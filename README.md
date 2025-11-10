@@ -1,6 +1,6 @@
 # Agentic RAG with Structured Outputs for Medical Knowledge Management
 
-An **agentic RAG system** built with **LangChain**, **LangGraph**, and **Pydantic-enforced structured outputs** that transforms clinical guidelines into a verifiable knowledge base. This project demonstrates production-grade LLM engineering: multi-agent orchestration, type-safe state machines, vector retrieval with HNSW indexing, and structured generation—not a web app with AI features bolted on.
+An **agentic RAG system** built with **LangChain**, **LangGraph**, and **Pydantic-enforced structured outputs** that transforms clinical guidelines into a verifiable knowledge base. This project demonstrates production-grade LLM engineering: multi-agent orchestration, type-safe state machines, vector retrieval with HNSW indexing, and structured generation.
 
 ## Core Architecture: LangChain + LangGraph Orchestration
 
@@ -15,19 +15,6 @@ This system is built on **LangChain Expression Language (LCEL)** and **LangGraph
 
 The system implements a **typed state graph** using LangGraph's `StateGraph` with conditional edges:
 
-```python
-from langgraph.graph import StateGraph, END
-from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
-from typing import TypedDict, Annotated, Sequence, List, Optional
-
-class ChatState(TypedDict):
-    """Typed state dictionary - all agent nodes operate on this shared state"""
-    messages: Annotated[Sequence[BaseMessage], "Chat history"]
-    classification: Optional[QuerySafetyClassification]  # Pydantic model
-    retrieved_chunks: List[Dict]
-    sources: List[Source]  # Pydantic model
-    is_followup: bool
-```
 
 **Graph topology:**
 ```
@@ -110,7 +97,6 @@ ChromaDB defaults to **L2 (Euclidean) distance**, which measures absolute distan
 - **ef_construction=200**: High build-time accuracy (we build once, query many times)
 - **ef_search=100**: Fast queries (~50ms for 5 results) with >95% recall vs brute-force
 
-**Result:** Sub-100ms retrieval at 0.4 cosine similarity threshold with 78 chunks.
 
 ## LangChain Expression Language (LCEL) Pipeline
 
