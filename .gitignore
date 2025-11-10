@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Output directories
+output/
+diabetes_figures/
+figures_output/
+
+# Database files
+chroma_db/
+
+# Gradio
+.gradio/
+
+# Temporary files
+*.tmp
+*.temp
+output_docling.md
+guideoutput_docling.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+

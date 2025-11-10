@@ -1,0 +1,2791 @@
+[
+  {
+    "id": "frontmatter-content-before-first-heading",
+    "title": "Content Before First Heading",
+    "level": "section",
+    "number": null,
+    "url": "/guidelines/content-before-first-heading",
+    "token_count": 465,
+    "breadcrumb": [
+      "Content Before First Heading"
+    ],
+    "path": [
+      "Content Before First Heading"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-table-of-content",
+    "title": "TABLE OF CONTENT",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/table-of-content",
+    "token_count": 2077,
+    "breadcrumb": [
+      "TABLE OF CONTENT"
+    ],
+    "path": [
+      "TABLE OF CONTENT"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-list-of-figures",
+    "title": "LIST OF FIGURES",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/list-of-figures",
+    "token_count": 670,
+    "breadcrumb": [
+      "LIST OF FIGURES"
+    ],
+    "path": [
+      "LIST OF FIGURES"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-list-of-tables",
+    "title": "LIST OF TABLES",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/list-of-tables",
+    "token_count": 1093,
+    "breadcrumb": [
+      "LIST OF TABLES"
+    ],
+    "path": [
+      "LIST OF TABLES"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-acronyms",
+    "title": "ACRONYMS",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/acronyms",
+    "token_count": 480,
+    "breadcrumb": [
+      "ACRONYMS"
+    ],
+    "path": [
+      "ACRONYMS"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-foreword",
+    "title": "FOREWORD",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/foreword",
+    "token_count": 860,
+    "breadcrumb": [
+      "FOREWORD"
+    ],
+    "path": [
+      "FOREWORD"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-preface",
+    "title": "PREFACE",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/preface",
+    "token_count": 458,
+    "breadcrumb": [
+      "PREFACE"
+    ],
+    "path": [
+      "PREFACE"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-acknowledgements",
+    "title": "ACKNOWLEDGEMENTS",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/acknowledgements",
+    "token_count": 477,
+    "breadcrumb": [
+      "ACKNOWLEDGEMENTS"
+    ],
+    "path": [
+      "ACKNOWLEDGEMENTS"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-executive-summary",
+    "title": "EXECUTIVE SUMMARY",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/executive-summary",
+    "token_count": 862,
+    "breadcrumb": [
+      "EXECUTIVE SUMMARY"
+    ],
+    "path": [
+      "EXECUTIVE SUMMARY"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-references",
+    "title": "REFERENCES",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/references",
+    "token_count": 1593,
+    "breadcrumb": [
+      "REFERENCES"
+    ],
+    "path": [
+      "REFERENCES"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "frontmatter-appendices",
+    "title": "APPENDICES",
+    "level": "h1",
+    "number": null,
+    "url": "/guidelines/appendices",
+    "token_count": 1489,
+    "breadcrumb": [
+      "APPENDICES"
+    ],
+    "path": [
+      "APPENDICES"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": null,
+    "parent_title": "",
+    "parent_url": "",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "section-1-1",
+    "title": "1.1. Definition",
+    "level": "h2",
+    "number": "1.1",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/11-definition",
+    "token_count": 71,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.1. Definition"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.1. Definition"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-1",
+    "parent_title": "CHAPTER ONE: INTRODUCTION TO DIABETES",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-1-2",
+      "section-1-3",
+      "section-1-4",
+      "section-1-5",
+      "section-1-6"
+    ],
+    "sibling_titles": [
+      "1.2. Pathophysiology",
+      "1.3. Diagnosis of diabetes",
+      "1.4. Classification of Diabetes Mellitus",
+      "1.5. Risk Factors",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+      "/guidelines/chapter-one-introduction-to-diabetes/13-diagnosis-of-diabetes",
+      "/guidelines/chapter-one-introduction-to-diabetes/14-classification-of-diabetes-mellitus",
+      "/guidelines/chapter-one-introduction-to-diabetes/15-risk-factors",
+      "/guidelines/chapter-one-introduction-to-diabetes/16-screening-for-diabetes-mellitus-type-2"
+    ]
+  },
+  {
+    "id": "section-1-2_intro",
+    "title": "1.2. Pathophysiology - Intro Content",
+    "level": "h2_intro",
+    "number": "1.2_intro",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+    "token_count": 305,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-1-2",
+    "parent_title": "1.2. Pathophysiology",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-1-2-1",
+    "title": "1.2.1. Pathogenesis and pathophysiology of type 1 diabetes",
+    "level": "h3",
+    "number": "1.2.1",
+    "url": "/guidelines/12-pathophysiology/121-pathogenesis-and-pathophysiology-of-type-1-diabetes",
+    "token_count": 238,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "1.2.1. Pathogenesis and pathophysiology of type 1 diabetes"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "1.2.1. Pathogenesis and pathophysiology of type 1 diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-1-2",
+    "parent_title": "1.2. Pathophysiology",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-1-2-2"
+    ],
+    "sibling_titles": [
+      "1.2.2. Pathogenesis and pathophysiology of type 2 diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/12-pathophysiology/122-pathogenesis-and-pathophysiology-of-type-2-diabetes"
+    ]
+  },
+  {
+    "id": "subsection-1-2-2",
+    "title": "1.2.2. Pathogenesis and pathophysiology of type 2 diabetes",
+    "level": "h3",
+    "number": "1.2.2",
+    "url": "/guidelines/12-pathophysiology/122-pathogenesis-and-pathophysiology-of-type-2-diabetes",
+    "token_count": 230,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "1.2.2. Pathogenesis and pathophysiology of type 2 diabetes"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.2. Pathophysiology",
+      "1.2.2. Pathogenesis and pathophysiology of type 2 diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-1-2",
+    "parent_title": "1.2. Pathophysiology",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-1-2-1"
+    ],
+    "sibling_titles": [
+      "1.2.1. Pathogenesis and pathophysiology of type 1 diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/12-pathophysiology/121-pathogenesis-and-pathophysiology-of-type-1-diabetes"
+    ]
+  },
+  {
+    "id": "section-1-3",
+    "title": "1.3. Diagnosis of diabetes",
+    "level": "h2",
+    "number": "1.3",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/13-diagnosis-of-diabetes",
+    "token_count": 645,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.3. Diagnosis of diabetes"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.3. Diagnosis of diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-1",
+    "parent_title": "CHAPTER ONE: INTRODUCTION TO DIABETES",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-1-1",
+      "section-1-2",
+      "section-1-4",
+      "section-1-5",
+      "section-1-6"
+    ],
+    "sibling_titles": [
+      "1.1. Definition",
+      "1.2. Pathophysiology",
+      "1.4. Classification of Diabetes Mellitus",
+      "1.5. Risk Factors",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-one-introduction-to-diabetes/11-definition",
+      "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+      "/guidelines/chapter-one-introduction-to-diabetes/14-classification-of-diabetes-mellitus",
+      "/guidelines/chapter-one-introduction-to-diabetes/15-risk-factors",
+      "/guidelines/chapter-one-introduction-to-diabetes/16-screening-for-diabetes-mellitus-type-2"
+    ]
+  },
+  {
+    "id": "section-1-4",
+    "title": "1.4. Classification of Diabetes Mellitus",
+    "level": "h2",
+    "number": "1.4",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/14-classification-of-diabetes-mellitus",
+    "token_count": 904,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.4. Classification of Diabetes Mellitus"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.4. Classification of Diabetes Mellitus"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-1",
+    "parent_title": "CHAPTER ONE: INTRODUCTION TO DIABETES",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-1-1",
+      "section-1-2",
+      "section-1-3",
+      "section-1-5",
+      "section-1-6"
+    ],
+    "sibling_titles": [
+      "1.1. Definition",
+      "1.2. Pathophysiology",
+      "1.3. Diagnosis of diabetes",
+      "1.5. Risk Factors",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-one-introduction-to-diabetes/11-definition",
+      "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+      "/guidelines/chapter-one-introduction-to-diabetes/13-diagnosis-of-diabetes",
+      "/guidelines/chapter-one-introduction-to-diabetes/15-risk-factors",
+      "/guidelines/chapter-one-introduction-to-diabetes/16-screening-for-diabetes-mellitus-type-2"
+    ]
+  },
+  {
+    "id": "section-1-5",
+    "title": "1.5. Risk Factors",
+    "level": "h2",
+    "number": "1.5",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/15-risk-factors",
+    "token_count": 260,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.5. Risk Factors"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.5. Risk Factors"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-1",
+    "parent_title": "CHAPTER ONE: INTRODUCTION TO DIABETES",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-1-1",
+      "section-1-2",
+      "section-1-3",
+      "section-1-4",
+      "section-1-6"
+    ],
+    "sibling_titles": [
+      "1.1. Definition",
+      "1.2. Pathophysiology",
+      "1.3. Diagnosis of diabetes",
+      "1.4. Classification of Diabetes Mellitus",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-one-introduction-to-diabetes/11-definition",
+      "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+      "/guidelines/chapter-one-introduction-to-diabetes/13-diagnosis-of-diabetes",
+      "/guidelines/chapter-one-introduction-to-diabetes/14-classification-of-diabetes-mellitus",
+      "/guidelines/chapter-one-introduction-to-diabetes/16-screening-for-diabetes-mellitus-type-2"
+    ]
+  },
+  {
+    "id": "section-1-6",
+    "title": "1.6. Screening for Diabetes Mellitus type 2",
+    "level": "h2",
+    "number": "1.6",
+    "url": "/guidelines/chapter-one-introduction-to-diabetes/16-screening-for-diabetes-mellitus-type-2",
+    "token_count": 473,
+    "breadcrumb": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "path": [
+      "CHAPTER ONE: INTRODUCTION TO DIABETES",
+      "1.6. Screening for Diabetes Mellitus type 2"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-1",
+    "parent_title": "CHAPTER ONE: INTRODUCTION TO DIABETES",
+    "parent_url": "/guidelines/chapter-one-introduction-to-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-1-1",
+      "section-1-2",
+      "section-1-3",
+      "section-1-4",
+      "section-1-5"
+    ],
+    "sibling_titles": [
+      "1.1. Definition",
+      "1.2. Pathophysiology",
+      "1.3. Diagnosis of diabetes",
+      "1.4. Classification of Diabetes Mellitus",
+      "1.5. Risk Factors"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-one-introduction-to-diabetes/11-definition",
+      "/guidelines/chapter-one-introduction-to-diabetes/12-pathophysiology",
+      "/guidelines/chapter-one-introduction-to-diabetes/13-diagnosis-of-diabetes",
+      "/guidelines/chapter-one-introduction-to-diabetes/14-classification-of-diabetes-mellitus",
+      "/guidelines/chapter-one-introduction-to-diabetes/15-risk-factors"
+    ]
+  },
+  {
+    "id": "section-2-0",
+    "title": "2.0. Introduction",
+    "level": "h2",
+    "number": "2.0",
+    "url": "/guidelines/chapter-two-management-of-diabetes/20-introduction",
+    "token_count": 145,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.0. Introduction"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.0. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-2",
+    "parent_title": "CHAPTER TWO: MANAGEMENT OF DIABETES",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-2-1",
+      "section-2-2"
+    ],
+    "sibling_titles": [
+      "2.1. Management of Type 1 Diabetes",
+      "2.2. Management of Type 2 Diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+      "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes"
+    ]
+  },
+  {
+    "id": "section-2-1_intro",
+    "title": "2.1. Management of Type 1 Diabetes - Intro Content",
+    "level": "h2_intro",
+    "number": "2.1_intro",
+    "url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "token_count": 1826,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-2-1",
+    "parent_title": "2.1. Management of Type 1 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-2-1-1",
+    "title": "2.1.1. Insulin treatment",
+    "level": "h3",
+    "number": "2.1.1",
+    "url": "/guidelines/21-management-of-type-1-diabetes/211-insulin-treatment",
+    "token_count": 3766,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.1. Insulin treatment"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.1. Insulin treatment"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-1",
+    "parent_title": "2.1. Management of Type 1 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-1-2",
+      "subsection-2-1-3",
+      "subsection-2-1-4"
+    ],
+    "sibling_titles": [
+      "2.1.2. Blood Glucose Monitoring",
+      "2.1.3. Educating a child living with diabetes and his/her family",
+      "2.1.4. Nutritional management in Children living with diabetes and his/her family"
+    ],
+    "sibling_urls": [
+      "/guidelines/21-management-of-type-1-diabetes/212-blood-glucose-monitoring",
+      "/guidelines/21-management-of-type-1-diabetes/213-educating-a-child-living-with-diabetes-and-hisher-family",
+      "/guidelines/21-management-of-type-1-diabetes/214-nutritional-management-in-children-living-with-diabetes-and-hisher-family"
+    ]
+  },
+  {
+    "id": "subsection-2-1-2",
+    "title": "2.1.2. Blood Glucose Monitoring",
+    "level": "h3",
+    "number": "2.1.2",
+    "url": "/guidelines/21-management-of-type-1-diabetes/212-blood-glucose-monitoring",
+    "token_count": 695,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.2. Blood Glucose Monitoring"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.2. Blood Glucose Monitoring"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-1",
+    "parent_title": "2.1. Management of Type 1 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-1-1",
+      "subsection-2-1-3",
+      "subsection-2-1-4"
+    ],
+    "sibling_titles": [
+      "2.1.1. Insulin treatment",
+      "2.1.3. Educating a child living with diabetes and his/her family",
+      "2.1.4. Nutritional management in Children living with diabetes and his/her family"
+    ],
+    "sibling_urls": [
+      "/guidelines/21-management-of-type-1-diabetes/211-insulin-treatment",
+      "/guidelines/21-management-of-type-1-diabetes/213-educating-a-child-living-with-diabetes-and-hisher-family",
+      "/guidelines/21-management-of-type-1-diabetes/214-nutritional-management-in-children-living-with-diabetes-and-hisher-family"
+    ]
+  },
+  {
+    "id": "subsection-2-1-3",
+    "title": "2.1.3. Educating a child living with diabetes and his/her family",
+    "level": "h3",
+    "number": "2.1.3",
+    "url": "/guidelines/21-management-of-type-1-diabetes/213-educating-a-child-living-with-diabetes-and-hisher-family",
+    "token_count": 339,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.3. Educating a child living with diabetes and his/her family"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.3. Educating a child living with diabetes and his/her family"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-1",
+    "parent_title": "2.1. Management of Type 1 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-1-1",
+      "subsection-2-1-2",
+      "subsection-2-1-4"
+    ],
+    "sibling_titles": [
+      "2.1.1. Insulin treatment",
+      "2.1.2. Blood Glucose Monitoring",
+      "2.1.4. Nutritional management in Children living with diabetes and his/her family"
+    ],
+    "sibling_urls": [
+      "/guidelines/21-management-of-type-1-diabetes/211-insulin-treatment",
+      "/guidelines/21-management-of-type-1-diabetes/212-blood-glucose-monitoring",
+      "/guidelines/21-management-of-type-1-diabetes/214-nutritional-management-in-children-living-with-diabetes-and-hisher-family"
+    ]
+  },
+  {
+    "id": "subsection-2-1-4",
+    "title": "2.1.4. Nutritional management in Children living with diabetes and his/her family",
+    "level": "h3",
+    "number": "2.1.4",
+    "url": "/guidelines/21-management-of-type-1-diabetes/214-nutritional-management-in-children-living-with-diabetes-and-hisher-family",
+    "token_count": 371,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.4. Nutritional management in Children living with diabetes and his/her family"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.1. Management of Type 1 Diabetes",
+      "2.1.4. Nutritional management in Children living with diabetes and his/her family"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-1",
+    "parent_title": "2.1. Management of Type 1 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/21-management-of-type-1-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-1-1",
+      "subsection-2-1-2",
+      "subsection-2-1-3"
+    ],
+    "sibling_titles": [
+      "2.1.1. Insulin treatment",
+      "2.1.2. Blood Glucose Monitoring",
+      "2.1.3. Educating a child living with diabetes and his/her family"
+    ],
+    "sibling_urls": [
+      "/guidelines/21-management-of-type-1-diabetes/211-insulin-treatment",
+      "/guidelines/21-management-of-type-1-diabetes/212-blood-glucose-monitoring",
+      "/guidelines/21-management-of-type-1-diabetes/213-educating-a-child-living-with-diabetes-and-hisher-family"
+    ]
+  },
+  {
+    "id": "section-2-2_intro",
+    "title": "2.2. Management of Type 2 Diabetes - Intro Content",
+    "level": "h2_intro",
+    "number": "2.2_intro",
+    "url": "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes",
+    "token_count": 2266,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-2-2",
+    "parent_title": "2.2. Management of Type 2 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-2-2-1",
+    "title": "2.2.1. Non-pharmacological management",
+    "level": "h3",
+    "number": "2.2.1",
+    "url": "/guidelines/22-management-of-type-2-diabetes/221-non-pharmacological-management",
+    "token_count": 5055,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.1. Non-pharmacological management"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.1. Non-pharmacological management"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-2",
+    "parent_title": "2.2. Management of Type 2 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-2-2",
+      "subsection-2-2-3"
+    ],
+    "sibling_titles": [
+      "2.2.2. Pharmacological Management",
+      "2.2.3. Blood Glucose monitoring"
+    ],
+    "sibling_urls": [
+      "/guidelines/22-management-of-type-2-diabetes/222-pharmacological-management",
+      "/guidelines/22-management-of-type-2-diabetes/223-blood-glucose-monitoring"
+    ]
+  },
+  {
+    "id": "subsection-2-2-2",
+    "title": "2.2.2. Pharmacological Management",
+    "level": "h3",
+    "number": "2.2.2",
+    "url": "/guidelines/22-management-of-type-2-diabetes/222-pharmacological-management",
+    "token_count": 5207,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.2. Pharmacological Management"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.2. Pharmacological Management"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-2",
+    "parent_title": "2.2. Management of Type 2 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-2-1",
+      "subsection-2-2-3"
+    ],
+    "sibling_titles": [
+      "2.2.1. Non-pharmacological management",
+      "2.2.3. Blood Glucose monitoring"
+    ],
+    "sibling_urls": [
+      "/guidelines/22-management-of-type-2-diabetes/221-non-pharmacological-management",
+      "/guidelines/22-management-of-type-2-diabetes/223-blood-glucose-monitoring"
+    ]
+  },
+  {
+    "id": "subsection-2-2-3",
+    "title": "2.2.3. Blood Glucose monitoring",
+    "level": "h3",
+    "number": "2.2.3",
+    "url": "/guidelines/22-management-of-type-2-diabetes/223-blood-glucose-monitoring",
+    "token_count": 2661,
+    "breadcrumb": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.3. Blood Glucose monitoring"
+    ],
+    "path": [
+      "CHAPTER TWO: MANAGEMENT OF DIABETES",
+      "2.2. Management of Type 2 Diabetes",
+      "2.2.3. Blood Glucose monitoring"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-2-2",
+    "parent_title": "2.2. Management of Type 2 Diabetes",
+    "parent_url": "/guidelines/chapter-two-management-of-diabetes/22-management-of-type-2-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-2-2-1",
+      "subsection-2-2-2"
+    ],
+    "sibling_titles": [
+      "2.2.1. Non-pharmacological management",
+      "2.2.2. Pharmacological Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/22-management-of-type-2-diabetes/221-non-pharmacological-management",
+      "/guidelines/22-management-of-type-2-diabetes/222-pharmacological-management"
+    ]
+  },
+  {
+    "id": "section-3-1",
+    "title": "3.1. Introduction",
+    "level": "h2",
+    "number": "3.1",
+    "url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/31-introduction",
+    "token_count": 169,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-3",
+    "parent_title": "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-3-2",
+      "section-3-3",
+      "section-3-4"
+    ],
+    "sibling_titles": [
+      "3.2. Acute Complications",
+      "3.3. Chronic Complications of Diabetes",
+      "3.4. Co-Morbidities in Diabetes Mellitus"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+      "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/33-chronic-complications-of-diabetes",
+      "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus"
+    ]
+  },
+  {
+    "id": "subsection-3-2-1",
+    "title": "3.2.1. Introduction",
+    "level": "h3",
+    "number": "3.2.1",
+    "url": "/guidelines/32-acute-complications/321-introduction",
+    "token_count": 74,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-2",
+    "parent_title": "3.2. Acute Complications",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-2-2",
+      "subsection-3-2-3",
+      "subsection-3-2-4",
+      "subsection-3-2-5"
+    ],
+    "sibling_titles": [
+      "3.2.2. Diabetic Ketoacidosis (DKA)",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State",
+      "3.2.4. Hypoglycemia",
+      "3.2.5. Sick Day Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/32-acute-complications/322-diabetic-ketoacidosis-dka",
+      "/guidelines/32-acute-complications/323-diabetic-hyperosmolar-hyperglycaemic-state",
+      "/guidelines/32-acute-complications/324-hypoglycemia",
+      "/guidelines/32-acute-complications/325-sick-day-management"
+    ]
+  },
+  {
+    "id": "subsection-3-2-2",
+    "title": "3.2.2. Diabetic Ketoacidosis (DKA)",
+    "level": "h3",
+    "number": "3.2.2",
+    "url": "/guidelines/32-acute-complications/322-diabetic-ketoacidosis-dka",
+    "token_count": 2749,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.2. Diabetic Ketoacidosis (DKA)"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.2. Diabetic Ketoacidosis (DKA)"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-2",
+    "parent_title": "3.2. Acute Complications",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-2-1",
+      "subsection-3-2-3",
+      "subsection-3-2-4",
+      "subsection-3-2-5"
+    ],
+    "sibling_titles": [
+      "3.2.1. Introduction",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State",
+      "3.2.4. Hypoglycemia",
+      "3.2.5. Sick Day Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/32-acute-complications/321-introduction",
+      "/guidelines/32-acute-complications/323-diabetic-hyperosmolar-hyperglycaemic-state",
+      "/guidelines/32-acute-complications/324-hypoglycemia",
+      "/guidelines/32-acute-complications/325-sick-day-management"
+    ]
+  },
+  {
+    "id": "subsection-3-2-3",
+    "title": "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State",
+    "level": "h3",
+    "number": "3.2.3",
+    "url": "/guidelines/32-acute-complications/323-diabetic-hyperosmolar-hyperglycaemic-state",
+    "token_count": 248,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-2",
+    "parent_title": "3.2. Acute Complications",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-2-1",
+      "subsection-3-2-2",
+      "subsection-3-2-4",
+      "subsection-3-2-5"
+    ],
+    "sibling_titles": [
+      "3.2.1. Introduction",
+      "3.2.2. Diabetic Ketoacidosis (DKA)",
+      "3.2.4. Hypoglycemia",
+      "3.2.5. Sick Day Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/32-acute-complications/321-introduction",
+      "/guidelines/32-acute-complications/322-diabetic-ketoacidosis-dka",
+      "/guidelines/32-acute-complications/324-hypoglycemia",
+      "/guidelines/32-acute-complications/325-sick-day-management"
+    ]
+  },
+  {
+    "id": "subsection-3-2-4",
+    "title": "3.2.4. Hypoglycemia",
+    "level": "h3",
+    "number": "3.2.4",
+    "url": "/guidelines/32-acute-complications/324-hypoglycemia",
+    "token_count": 1008,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.4. Hypoglycemia"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.4. Hypoglycemia"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-2",
+    "parent_title": "3.2. Acute Complications",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-2-1",
+      "subsection-3-2-2",
+      "subsection-3-2-3",
+      "subsection-3-2-5"
+    ],
+    "sibling_titles": [
+      "3.2.1. Introduction",
+      "3.2.2. Diabetic Ketoacidosis (DKA)",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State",
+      "3.2.5. Sick Day Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/32-acute-complications/321-introduction",
+      "/guidelines/32-acute-complications/322-diabetic-ketoacidosis-dka",
+      "/guidelines/32-acute-complications/323-diabetic-hyperosmolar-hyperglycaemic-state",
+      "/guidelines/32-acute-complications/325-sick-day-management"
+    ]
+  },
+  {
+    "id": "subsection-3-2-5",
+    "title": "3.2.5. Sick Day Management",
+    "level": "h3",
+    "number": "3.2.5",
+    "url": "/guidelines/32-acute-complications/325-sick-day-management",
+    "token_count": 1486,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.5. Sick Day Management"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.2. Acute Complications",
+      "3.2.5. Sick Day Management"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-2",
+    "parent_title": "3.2. Acute Complications",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/32-acute-complications",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-2-1",
+      "subsection-3-2-2",
+      "subsection-3-2-3",
+      "subsection-3-2-4"
+    ],
+    "sibling_titles": [
+      "3.2.1. Introduction",
+      "3.2.2. Diabetic Ketoacidosis (DKA)",
+      "3.2.3. Diabetic Hyperosmolar Hyperglycaemic State",
+      "3.2.4. Hypoglycemia"
+    ],
+    "sibling_urls": [
+      "/guidelines/32-acute-complications/321-introduction",
+      "/guidelines/32-acute-complications/322-diabetic-ketoacidosis-dka",
+      "/guidelines/32-acute-complications/323-diabetic-hyperosmolar-hyperglycaemic-state",
+      "/guidelines/32-acute-complications/324-hypoglycemia"
+    ]
+  },
+  {
+    "id": "subsection-3-3-1",
+    "title": "3.3.1. Macrovascular Complications",
+    "level": "h3",
+    "number": "3.3.1",
+    "url": "/guidelines/33-chronic-complications-of-diabetes/331-macrovascular-complications",
+    "token_count": 2680,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.3. Chronic Complications of Diabetes",
+      "3.3.1. Macrovascular Complications"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.3. Chronic Complications of Diabetes",
+      "3.3.1. Macrovascular Complications"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-3",
+    "parent_title": "3.3. Chronic Complications of Diabetes",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/33-chronic-complications-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-3-2"
+    ],
+    "sibling_titles": [
+      "3.3.2. Chronic Microvascular Complications"
+    ],
+    "sibling_urls": [
+      "/guidelines/33-chronic-complications-of-diabetes/332-chronic-microvascular-complications"
+    ]
+  },
+  {
+    "id": "subsection-3-3-2",
+    "title": "3.3.2. Chronic Microvascular Complications",
+    "level": "h3",
+    "number": "3.3.2",
+    "url": "/guidelines/33-chronic-complications-of-diabetes/332-chronic-microvascular-complications",
+    "token_count": 3501,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.3. Chronic Complications of Diabetes",
+      "3.3.2. Chronic Microvascular Complications"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.3. Chronic Complications of Diabetes",
+      "3.3.2. Chronic Microvascular Complications"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-3",
+    "parent_title": "3.3. Chronic Complications of Diabetes",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/33-chronic-complications-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-3-1"
+    ],
+    "sibling_titles": [
+      "3.3.1. Macrovascular Complications"
+    ],
+    "sibling_urls": [
+      "/guidelines/33-chronic-complications-of-diabetes/331-macrovascular-complications"
+    ]
+  },
+  {
+    "id": "section-3-4_intro",
+    "title": "3.4. Co-Morbidities in Diabetes Mellitus - Intro Content",
+    "level": "h2_intro",
+    "number": "3.4_intro",
+    "url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus",
+    "token_count": 54,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-3-4",
+    "parent_title": "3.4. Co-Morbidities in Diabetes Mellitus",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-3-4-1",
+    "title": "3.4.1. Hypertension",
+    "level": "h3",
+    "number": "3.4.1",
+    "url": "/guidelines/34-co-morbidities-in-diabetes-mellitus/341-hypertension",
+    "token_count": 963,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.1. Hypertension"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.1. Hypertension"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-4",
+    "parent_title": "3.4. Co-Morbidities in Diabetes Mellitus",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-4-2",
+      "subsection-3-4-3"
+    ],
+    "sibling_titles": [
+      "3.4.2. Mental Disorders in Diabetes",
+      "3.4.3. Lipids disorders in Diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/342-mental-disorders-in-diabetes",
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/343-lipids-disorders-in-diabetes"
+    ]
+  },
+  {
+    "id": "subsection-3-4-2",
+    "title": "3.4.2. Mental Disorders in Diabetes",
+    "level": "h3",
+    "number": "3.4.2",
+    "url": "/guidelines/34-co-morbidities-in-diabetes-mellitus/342-mental-disorders-in-diabetes",
+    "token_count": 219,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.2. Mental Disorders in Diabetes"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.2. Mental Disorders in Diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-4",
+    "parent_title": "3.4. Co-Morbidities in Diabetes Mellitus",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-4-1",
+      "subsection-3-4-3"
+    ],
+    "sibling_titles": [
+      "3.4.1. Hypertension",
+      "3.4.3. Lipids disorders in Diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/341-hypertension",
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/343-lipids-disorders-in-diabetes"
+    ]
+  },
+  {
+    "id": "subsection-3-4-3",
+    "title": "3.4.3. Lipids disorders in Diabetes",
+    "level": "h3",
+    "number": "3.4.3",
+    "url": "/guidelines/34-co-morbidities-in-diabetes-mellitus/343-lipids-disorders-in-diabetes",
+    "token_count": 977,
+    "breadcrumb": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.3. Lipids disorders in Diabetes"
+    ],
+    "path": [
+      "CHAPTER THREE: MANAGEMENT OF COMPLICATIONS AND COMORBIDITIES IN DIABETES MELLITUS",
+      "3.4. Co-Morbidities in Diabetes Mellitus",
+      "3.4.3. Lipids disorders in Diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-3-4",
+    "parent_title": "3.4. Co-Morbidities in Diabetes Mellitus",
+    "parent_url": "/guidelines/chapter-three-management-of-complications-and-comorbidities-in-diabetes-mellitus/34-co-morbidities-in-diabetes-mellitus",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-3-4-1",
+      "subsection-3-4-2"
+    ],
+    "sibling_titles": [
+      "3.4.1. Hypertension",
+      "3.4.2. Mental Disorders in Diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/341-hypertension",
+      "/guidelines/34-co-morbidities-in-diabetes-mellitus/342-mental-disorders-in-diabetes"
+    ]
+  },
+  {
+    "id": "section-4-1",
+    "title": "4.1. Introduction",
+    "level": "h2",
+    "number": "4.1",
+    "url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/41-introduction",
+    "token_count": 303,
+    "breadcrumb": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-4",
+    "parent_title": "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+    "parent_url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-4-2",
+      "section-4-3"
+    ],
+    "sibling_titles": [
+      "4.2. Management of the metabolic syndrome",
+      "4.3. Obesity"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-four-metabolic-syndrome-and-obesity/42-management-of-the-metabolic-syndrome",
+      "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity"
+    ]
+  },
+  {
+    "id": "section-4-2",
+    "title": "4.2. Management of the metabolic syndrome",
+    "level": "h2",
+    "number": "4.2",
+    "url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/42-management-of-the-metabolic-syndrome",
+    "token_count": 101,
+    "breadcrumb": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.2. Management of the metabolic syndrome"
+    ],
+    "path": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.2. Management of the metabolic syndrome"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-4",
+    "parent_title": "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+    "parent_url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-4-1",
+      "section-4-3"
+    ],
+    "sibling_titles": [
+      "4.1. Introduction",
+      "4.3. Obesity"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-four-metabolic-syndrome-and-obesity/41-introduction",
+      "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity"
+    ]
+  },
+  {
+    "id": "section-4-3_intro",
+    "title": "4.3. Obesity - Intro Content",
+    "level": "h2_intro",
+    "number": "4.3_intro",
+    "url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity",
+    "token_count": 254,
+    "breadcrumb": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-4-3",
+    "parent_title": "4.3. Obesity",
+    "parent_url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-4-3-1",
+    "title": "4.3.1. Measurements for evaluation of obesity",
+    "level": "h3",
+    "number": "4.3.1",
+    "url": "/guidelines/43-obesity/431-measurements-for-evaluation-of-obesity",
+    "token_count": 415,
+    "breadcrumb": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "4.3.1. Measurements for evaluation of obesity"
+    ],
+    "path": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "4.3.1. Measurements for evaluation of obesity"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-4-3",
+    "parent_title": "4.3. Obesity",
+    "parent_url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-4-3-2"
+    ],
+    "sibling_titles": [
+      "4.3.2. General principles of the management of obesity"
+    ],
+    "sibling_urls": [
+      "/guidelines/43-obesity/432-general-principles-of-the-management-of-obesity"
+    ]
+  },
+  {
+    "id": "subsection-4-3-2",
+    "title": "4.3.2. General principles of the management of obesity",
+    "level": "h3",
+    "number": "4.3.2",
+    "url": "/guidelines/43-obesity/432-general-principles-of-the-management-of-obesity",
+    "token_count": 109,
+    "breadcrumb": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "4.3.2. General principles of the management of obesity"
+    ],
+    "path": [
+      "CHAPTER FOUR: METABOLIC SYNDROME AND OBESITY",
+      "4.3. Obesity",
+      "4.3.2. General principles of the management of obesity"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-4-3",
+    "parent_title": "4.3. Obesity",
+    "parent_url": "/guidelines/chapter-four-metabolic-syndrome-and-obesity/43-obesity",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-4-3-1"
+    ],
+    "sibling_titles": [
+      "4.3.1. Measurements for evaluation of obesity"
+    ],
+    "sibling_urls": [
+      "/guidelines/43-obesity/431-measurements-for-evaluation-of-obesity"
+    ]
+  },
+  {
+    "id": "section-5-1",
+    "title": "5.1. Diabetes in Pregnancy",
+    "level": "h2",
+    "number": "5.1",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/51-diabetes-in-pregnancy",
+    "token_count": 3414,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.1. Diabetes in Pregnancy"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.1. Diabetes in Pregnancy"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-5",
+    "parent_title": "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-5-2",
+      "section-5-3",
+      "section-5-3",
+      "section-5-4",
+      "section-5-5",
+      "section-5-6"
+    ],
+    "sibling_titles": [
+      "5.2. Management of diabetes during fasting",
+      "5.3. Diabetes in the Older AAdults",
+      "5.3. Diabetes in the Older AAdults",
+      "5.4. Management of Diabetes during Surgery",
+      "5.5. Diabetes and HIV",
+      "5.6. Diabetes andTB"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/52-management-of-diabetes-during-fasting",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb"
+    ]
+  },
+  {
+    "id": "section-5-2",
+    "title": "5.2. Management of diabetes during fasting",
+    "level": "h2",
+    "number": "5.2",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/52-management-of-diabetes-during-fasting",
+    "token_count": 1274,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.2. Management of diabetes during fasting"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.2. Management of diabetes during fasting"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-5",
+    "parent_title": "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-5-1",
+      "section-5-3",
+      "section-5-3",
+      "section-5-4",
+      "section-5-5",
+      "section-5-6"
+    ],
+    "sibling_titles": [
+      "5.1. Diabetes in Pregnancy",
+      "5.3. Diabetes in the Older AAdults",
+      "5.3. Diabetes in the Older AAdults",
+      "5.4. Management of Diabetes during Surgery",
+      "5.5. Diabetes and HIV",
+      "5.6. Diabetes andTB"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/51-diabetes-in-pregnancy",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb"
+    ]
+  },
+  {
+    "id": "section-5-3",
+    "title": "5.3. Diabetes in the Older AAdults",
+    "level": "h2",
+    "number": "5.3",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+    "token_count": 570,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.3. Diabetes in the Older AAdults"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.3. Diabetes in the Older AAdults"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-5",
+    "parent_title": "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-5-1",
+      "section-5-2",
+      "section-5-4",
+      "section-5-5",
+      "section-5-6"
+    ],
+    "sibling_titles": [
+      "5.1. Diabetes in Pregnancy",
+      "5.2. Management of diabetes during fasting",
+      "5.4. Management of Diabetes during Surgery",
+      "5.5. Diabetes and HIV",
+      "5.6. Diabetes andTB"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/51-diabetes-in-pregnancy",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/52-management-of-diabetes-during-fasting",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb"
+    ]
+  },
+  {
+    "id": "section-5-3",
+    "title": "5.3. Diabetes in the Older AAdults",
+    "level": "h2",
+    "number": "5.3",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/53-diabetes-in-the-older-aadults",
+    "token_count": 570,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.3. Diabetes in the Older AAdults"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.3. Diabetes in the Older AAdults"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-5",
+    "parent_title": "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-5-1",
+      "section-5-2",
+      "section-5-4",
+      "section-5-5",
+      "section-5-6"
+    ],
+    "sibling_titles": [
+      "5.1. Diabetes in Pregnancy",
+      "5.2. Management of diabetes during fasting",
+      "5.4. Management of Diabetes during Surgery",
+      "5.5. Diabetes and HIV",
+      "5.6. Diabetes andTB"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/51-diabetes-in-pregnancy",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/52-management-of-diabetes-during-fasting",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+      "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb"
+    ]
+  },
+  {
+    "id": "section-5-4_intro",
+    "title": "5.4. Management of Diabetes during Surgery - Intro Content",
+    "level": "h2_intro",
+    "number": "5.4_intro",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+    "token_count": 353,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-5-4",
+    "parent_title": "5.4. Management of Diabetes during Surgery",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-5-4-1",
+    "title": "5.4.1. Pre-Operative Management",
+    "level": "h3",
+    "number": "5.4.1",
+    "url": "/guidelines/54-management-of-diabetes-during-surgery/541-pre-operative-management",
+    "token_count": 204,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "5.4.1. Pre-Operative Management"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "5.4.1. Pre-Operative Management"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-4",
+    "parent_title": "5.4. Management of Diabetes during Surgery",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-4-2"
+    ],
+    "sibling_titles": [
+      "5.4.2. Intraoperative management"
+    ],
+    "sibling_urls": [
+      "/guidelines/54-management-of-diabetes-during-surgery/542-intraoperative-management"
+    ]
+  },
+  {
+    "id": "subsection-5-4-2",
+    "title": "5.4.2. Intraoperative management",
+    "level": "h3",
+    "number": "5.4.2",
+    "url": "/guidelines/54-management-of-diabetes-during-surgery/542-intraoperative-management",
+    "token_count": 600,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "5.4.2. Intraoperative management"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.4. Management of Diabetes during Surgery",
+      "5.4.2. Intraoperative management"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-4",
+    "parent_title": "5.4. Management of Diabetes during Surgery",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/54-management-of-diabetes-during-surgery",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-4-1"
+    ],
+    "sibling_titles": [
+      "5.4.1. Pre-Operative Management"
+    ],
+    "sibling_urls": [
+      "/guidelines/54-management-of-diabetes-during-surgery/541-pre-operative-management"
+    ]
+  },
+  {
+    "id": "section-5-5_intro",
+    "title": "5.5. Diabetes and HIV - Intro Content",
+    "level": "h2_intro",
+    "number": "5.5_intro",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "token_count": 117,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-5-5-1",
+    "title": "5.5.1. Classification of HIV in patients with diabetes",
+    "level": "h3",
+    "number": "5.5.1",
+    "url": "/guidelines/55-diabetes-and-hiv/551-classification-of-hiv-in-patients-with-diabetes",
+    "token_count": 76,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.1. Classification of HIV in patients with diabetes"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.1. Classification of HIV in patients with diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-5-2",
+      "subsection-5-5-3",
+      "subsection-5-5-4",
+      "subsection-5-5-5"
+    ],
+    "sibling_titles": [
+      "5.5.2. Risk factors for Diabetes in HIV patients",
+      "5.5.3. Screening for diabetes in HIV patients",
+      "5.5.4. Evaluation of a patient",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "sibling_urls": [
+      "/guidelines/55-diabetes-and-hiv/552-risk-factors-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/553-screening-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/554-evaluation-of-a-patient",
+      "/guidelines/55-diabetes-and-hiv/555-treatment-of-diabetes-in-hiv-infected-individuals"
+    ]
+  },
+  {
+    "id": "subsection-5-5-2",
+    "title": "5.5.2. Risk factors for Diabetes in HIV patients",
+    "level": "h3",
+    "number": "5.5.2",
+    "url": "/guidelines/55-diabetes-and-hiv/552-risk-factors-for-diabetes-in-hiv-patients",
+    "token_count": 467,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.2. Risk factors for Diabetes in HIV patients"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.2. Risk factors for Diabetes in HIV patients"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-5-1",
+      "subsection-5-5-3",
+      "subsection-5-5-4",
+      "subsection-5-5-5"
+    ],
+    "sibling_titles": [
+      "5.5.1. Classification of HIV in patients with diabetes",
+      "5.5.3. Screening for diabetes in HIV patients",
+      "5.5.4. Evaluation of a patient",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "sibling_urls": [
+      "/guidelines/55-diabetes-and-hiv/551-classification-of-hiv-in-patients-with-diabetes",
+      "/guidelines/55-diabetes-and-hiv/553-screening-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/554-evaluation-of-a-patient",
+      "/guidelines/55-diabetes-and-hiv/555-treatment-of-diabetes-in-hiv-infected-individuals"
+    ]
+  },
+  {
+    "id": "subsection-5-5-3",
+    "title": "5.5.3. Screening for diabetes in HIV patients",
+    "level": "h3",
+    "number": "5.5.3",
+    "url": "/guidelines/55-diabetes-and-hiv/553-screening-for-diabetes-in-hiv-patients",
+    "token_count": 114,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.3. Screening for diabetes in HIV patients"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.3. Screening for diabetes in HIV patients"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-5-1",
+      "subsection-5-5-2",
+      "subsection-5-5-4",
+      "subsection-5-5-5"
+    ],
+    "sibling_titles": [
+      "5.5.1. Classification of HIV in patients with diabetes",
+      "5.5.2. Risk factors for Diabetes in HIV patients",
+      "5.5.4. Evaluation of a patient",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "sibling_urls": [
+      "/guidelines/55-diabetes-and-hiv/551-classification-of-hiv-in-patients-with-diabetes",
+      "/guidelines/55-diabetes-and-hiv/552-risk-factors-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/554-evaluation-of-a-patient",
+      "/guidelines/55-diabetes-and-hiv/555-treatment-of-diabetes-in-hiv-infected-individuals"
+    ]
+  },
+  {
+    "id": "subsection-5-5-4",
+    "title": "5.5.4. Evaluation of a patient",
+    "level": "h3",
+    "number": "5.5.4",
+    "url": "/guidelines/55-diabetes-and-hiv/554-evaluation-of-a-patient",
+    "token_count": 258,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.4. Evaluation of a patient"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.4. Evaluation of a patient"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-5-1",
+      "subsection-5-5-2",
+      "subsection-5-5-3",
+      "subsection-5-5-5"
+    ],
+    "sibling_titles": [
+      "5.5.1. Classification of HIV in patients with diabetes",
+      "5.5.2. Risk factors for Diabetes in HIV patients",
+      "5.5.3. Screening for diabetes in HIV patients",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "sibling_urls": [
+      "/guidelines/55-diabetes-and-hiv/551-classification-of-hiv-in-patients-with-diabetes",
+      "/guidelines/55-diabetes-and-hiv/552-risk-factors-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/553-screening-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/555-treatment-of-diabetes-in-hiv-infected-individuals"
+    ]
+  },
+  {
+    "id": "subsection-5-5-5",
+    "title": "5.5.5. Treatment of diabetes in HIV infected individuals",
+    "level": "h3",
+    "number": "5.5.5",
+    "url": "/guidelines/55-diabetes-and-hiv/555-treatment-of-diabetes-in-hiv-infected-individuals",
+    "token_count": 773,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.5. Diabetes and HIV",
+      "5.5.5. Treatment of diabetes in HIV infected individuals"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-5",
+    "parent_title": "5.5. Diabetes and HIV",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/55-diabetes-and-hiv",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-5-1",
+      "subsection-5-5-2",
+      "subsection-5-5-3",
+      "subsection-5-5-4"
+    ],
+    "sibling_titles": [
+      "5.5.1. Classification of HIV in patients with diabetes",
+      "5.5.2. Risk factors for Diabetes in HIV patients",
+      "5.5.3. Screening for diabetes in HIV patients",
+      "5.5.4. Evaluation of a patient"
+    ],
+    "sibling_urls": [
+      "/guidelines/55-diabetes-and-hiv/551-classification-of-hiv-in-patients-with-diabetes",
+      "/guidelines/55-diabetes-and-hiv/552-risk-factors-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/553-screening-for-diabetes-in-hiv-patients",
+      "/guidelines/55-diabetes-and-hiv/554-evaluation-of-a-patient"
+    ]
+  },
+  {
+    "id": "section-5-6_intro",
+    "title": "5.6. Diabetes andTB - Intro Content",
+    "level": "h2_intro",
+    "number": "5.6_intro",
+    "url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb",
+    "token_count": 87,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "Intro Content"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "Intro Content"
+    ],
+    "is_orphan": true,
+    "has_intro_content": true,
+    "parent_id": "section-5-6",
+    "parent_title": "5.6. Diabetes andTB",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb",
+    "children_ids": [],
+    "sibling_ids": [],
+    "sibling_titles": [],
+    "sibling_urls": []
+  },
+  {
+    "id": "subsection-5-6-1",
+    "title": "5.6.1. Effects of diabetes onTB",
+    "level": "h3",
+    "number": "5.6.1",
+    "url": "/guidelines/56-diabetes-andtb/561-effects-of-diabetes-ontb",
+    "token_count": 229,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.1. Effects of diabetes onTB"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.1. Effects of diabetes onTB"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-6",
+    "parent_title": "5.6. Diabetes andTB",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-6-2",
+      "subsection-5-6-3"
+    ],
+    "sibling_titles": [
+      "5.6.2. Effects ofTB on diabetes",
+      "5.6.3. TB screening among diabetes patients"
+    ],
+    "sibling_urls": [
+      "/guidelines/56-diabetes-andtb/562-effects-oftb-on-diabetes",
+      "/guidelines/56-diabetes-andtb/563-tb-screening-among-diabetes-patients"
+    ]
+  },
+  {
+    "id": "subsection-5-6-2",
+    "title": "5.6.2. Effects ofTB on diabetes",
+    "level": "h3",
+    "number": "5.6.2",
+    "url": "/guidelines/56-diabetes-andtb/562-effects-oftb-on-diabetes",
+    "token_count": 104,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.2. Effects ofTB on diabetes"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.2. Effects ofTB on diabetes"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-6",
+    "parent_title": "5.6. Diabetes andTB",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-6-1",
+      "subsection-5-6-3"
+    ],
+    "sibling_titles": [
+      "5.6.1. Effects of diabetes onTB",
+      "5.6.3. TB screening among diabetes patients"
+    ],
+    "sibling_urls": [
+      "/guidelines/56-diabetes-andtb/561-effects-of-diabetes-ontb",
+      "/guidelines/56-diabetes-andtb/563-tb-screening-among-diabetes-patients"
+    ]
+  },
+  {
+    "id": "subsection-5-6-3",
+    "title": "5.6.3. TB screening among diabetes patients",
+    "level": "h3",
+    "number": "5.6.3",
+    "url": "/guidelines/56-diabetes-andtb/563-tb-screening-among-diabetes-patients",
+    "token_count": 535,
+    "breadcrumb": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.3. TB screening among diabetes patients"
+    ],
+    "path": [
+      "CHAPTER FIVE: MANAGEMENT OF DIABETES IN SPECIAL SITUATIONS",
+      "5.6. Diabetes andTB",
+      "5.6.3. TB screening among diabetes patients"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "section-5-6",
+    "parent_title": "5.6. Diabetes andTB",
+    "parent_url": "/guidelines/chapter-five-management-of-diabetes-in-special-situations/56-diabetes-andtb",
+    "children_ids": [],
+    "sibling_ids": [
+      "subsection-5-6-1",
+      "subsection-5-6-2"
+    ],
+    "sibling_titles": [
+      "5.6.1. Effects of diabetes onTB",
+      "5.6.2. Effects ofTB on diabetes"
+    ],
+    "sibling_urls": [
+      "/guidelines/56-diabetes-andtb/561-effects-of-diabetes-ontb",
+      "/guidelines/56-diabetes-andtb/562-effects-oftb-on-diabetes"
+    ]
+  },
+  {
+    "id": "section-6-1",
+    "title": "6.1. Introduction",
+    "level": "h2",
+    "number": "6.1",
+    "url": "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+    "token_count": 123,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-2",
+      "section-6-3",
+      "section-6-4",
+      "section-6-5",
+      "section-6-6",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.2. Employment",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.4. Insurance",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.6. Diabetes and School",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-2",
+    "title": "6.2. Employment",
+    "level": "h2",
+    "number": "6.2",
+    "url": "/guidelines/chapter-six-living-with-diabetes/62-employment",
+    "token_count": 243,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.2. Employment"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.2. Employment"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-3",
+      "section-6-4",
+      "section-6-5",
+      "section-6-6",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.4. Insurance",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.6. Diabetes and School",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-3",
+    "title": "6.3. Driving, Flying and Operating Machines",
+    "level": "h2",
+    "number": "6.3",
+    "url": "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+    "token_count": 279,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.3. Driving, Flying and Operating Machines"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.3. Driving, Flying and Operating Machines"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-2",
+      "section-6-4",
+      "section-6-5",
+      "section-6-6",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.2. Employment",
+      "6.4. Insurance",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.6. Diabetes and School",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-4",
+    "title": "6.4. Insurance",
+    "level": "h2",
+    "number": "6.4",
+    "url": "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+    "token_count": 97,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.4. Insurance"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.4. Insurance"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-2",
+      "section-6-3",
+      "section-6-5",
+      "section-6-6",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.2. Employment",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.6. Diabetes and School",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-5",
+    "title": "6.5. Sports, recreational and occupational exercise",
+    "level": "h2",
+    "number": "6.5",
+    "url": "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+    "token_count": 620,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.5. Sports, recreational and occupational exercise"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.5. Sports, recreational and occupational exercise"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-2",
+      "section-6-3",
+      "section-6-4",
+      "section-6-6",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.2. Employment",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.4. Insurance",
+      "6.6. Diabetes and School",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-6",
+    "title": "6.6. Diabetes and School",
+    "level": "h2",
+    "number": "6.6",
+    "url": "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school",
+    "token_count": 314,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.6. Diabetes and School"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.6. Diabetes and School"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-2",
+      "section-6-3",
+      "section-6-4",
+      "section-6-5",
+      "section-6-7"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.2. Employment",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.4. Insurance",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.7. Caregiver and Family Support"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support"
+    ]
+  },
+  {
+    "id": "section-6-7",
+    "title": "6.7. Caregiver and Family Support",
+    "level": "h2",
+    "number": "6.7",
+    "url": "/guidelines/chapter-six-living-with-diabetes/67-caregiver-and-family-support",
+    "token_count": 258,
+    "breadcrumb": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.7. Caregiver and Family Support"
+    ],
+    "path": [
+      "CHAPTER SIX: LIVING WITH DIABETES",
+      "6.7. Caregiver and Family Support"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-6",
+    "parent_title": "CHAPTER SIX: LIVING WITH DIABETES",
+    "parent_url": "/guidelines/chapter-six-living-with-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-6-1",
+      "section-6-2",
+      "section-6-3",
+      "section-6-4",
+      "section-6-5",
+      "section-6-6"
+    ],
+    "sibling_titles": [
+      "6.1. Introduction",
+      "6.2. Employment",
+      "6.3. Driving, Flying and Operating Machines",
+      "6.4. Insurance",
+      "6.5. Sports, recreational and occupational exercise",
+      "6.6. Diabetes and School"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-six-living-with-diabetes/61-introduction",
+      "/guidelines/chapter-six-living-with-diabetes/62-employment",
+      "/guidelines/chapter-six-living-with-diabetes/63-driving-flying-and-operating-machines",
+      "/guidelines/chapter-six-living-with-diabetes/64-insurance",
+      "/guidelines/chapter-six-living-with-diabetes/65-sports-recreational-and-occupational-exercise",
+      "/guidelines/chapter-six-living-with-diabetes/66-diabetes-and-school"
+    ]
+  },
+  {
+    "id": "section-7-1",
+    "title": "7.1. Introduction",
+    "level": "h2",
+    "number": "7.1",
+    "url": "/guidelines/chapter-seven-prevention-of-diabetes/71-introduction",
+    "token_count": 68,
+    "breadcrumb": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-7",
+    "parent_title": "CHAPTER SEVEN: PREVENTION OF DIABETES",
+    "parent_url": "/guidelines/chapter-seven-prevention-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-7-2",
+      "section-7-3",
+      "section-7-4",
+      "section-7-5"
+    ],
+    "sibling_titles": [
+      "7.2. Primordial Prevention",
+      "7.3. Primary Prevention",
+      "7.4. Secondary prevention",
+      "7.5. Tertiary Prevention"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-seven-prevention-of-diabetes/72-primordial-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/73-primary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/74-secondary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/75-tertiary-prevention"
+    ]
+  },
+  {
+    "id": "section-7-2",
+    "title": "7.2. Primordial Prevention",
+    "level": "h2",
+    "number": "7.2",
+    "url": "/guidelines/chapter-seven-prevention-of-diabetes/72-primordial-prevention",
+    "token_count": 130,
+    "breadcrumb": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.2. Primordial Prevention"
+    ],
+    "path": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.2. Primordial Prevention"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-7",
+    "parent_title": "CHAPTER SEVEN: PREVENTION OF DIABETES",
+    "parent_url": "/guidelines/chapter-seven-prevention-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-7-1",
+      "section-7-3",
+      "section-7-4",
+      "section-7-5"
+    ],
+    "sibling_titles": [
+      "7.1. Introduction",
+      "7.3. Primary Prevention",
+      "7.4. Secondary prevention",
+      "7.5. Tertiary Prevention"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-seven-prevention-of-diabetes/71-introduction",
+      "/guidelines/chapter-seven-prevention-of-diabetes/73-primary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/74-secondary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/75-tertiary-prevention"
+    ]
+  },
+  {
+    "id": "section-7-3",
+    "title": "7.3. Primary Prevention",
+    "level": "h2",
+    "number": "7.3",
+    "url": "/guidelines/chapter-seven-prevention-of-diabetes/73-primary-prevention",
+    "token_count": 336,
+    "breadcrumb": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.3. Primary Prevention"
+    ],
+    "path": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.3. Primary Prevention"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-7",
+    "parent_title": "CHAPTER SEVEN: PREVENTION OF DIABETES",
+    "parent_url": "/guidelines/chapter-seven-prevention-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-7-1",
+      "section-7-2",
+      "section-7-4",
+      "section-7-5"
+    ],
+    "sibling_titles": [
+      "7.1. Introduction",
+      "7.2. Primordial Prevention",
+      "7.4. Secondary prevention",
+      "7.5. Tertiary Prevention"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-seven-prevention-of-diabetes/71-introduction",
+      "/guidelines/chapter-seven-prevention-of-diabetes/72-primordial-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/74-secondary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/75-tertiary-prevention"
+    ]
+  },
+  {
+    "id": "section-7-4",
+    "title": "7.4. Secondary prevention",
+    "level": "h2",
+    "number": "7.4",
+    "url": "/guidelines/chapter-seven-prevention-of-diabetes/74-secondary-prevention",
+    "token_count": 98,
+    "breadcrumb": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.4. Secondary prevention"
+    ],
+    "path": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.4. Secondary prevention"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-7",
+    "parent_title": "CHAPTER SEVEN: PREVENTION OF DIABETES",
+    "parent_url": "/guidelines/chapter-seven-prevention-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-7-1",
+      "section-7-2",
+      "section-7-3",
+      "section-7-5"
+    ],
+    "sibling_titles": [
+      "7.1. Introduction",
+      "7.2. Primordial Prevention",
+      "7.3. Primary Prevention",
+      "7.5. Tertiary Prevention"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-seven-prevention-of-diabetes/71-introduction",
+      "/guidelines/chapter-seven-prevention-of-diabetes/72-primordial-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/73-primary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/75-tertiary-prevention"
+    ]
+  },
+  {
+    "id": "section-7-5",
+    "title": "7.5. Tertiary Prevention",
+    "level": "h2",
+    "number": "7.5",
+    "url": "/guidelines/chapter-seven-prevention-of-diabetes/75-tertiary-prevention",
+    "token_count": 157,
+    "breadcrumb": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.5. Tertiary Prevention"
+    ],
+    "path": [
+      "CHAPTER SEVEN: PREVENTION OF DIABETES",
+      "7.5. Tertiary Prevention"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-7",
+    "parent_title": "CHAPTER SEVEN: PREVENTION OF DIABETES",
+    "parent_url": "/guidelines/chapter-seven-prevention-of-diabetes",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-7-1",
+      "section-7-2",
+      "section-7-3",
+      "section-7-4"
+    ],
+    "sibling_titles": [
+      "7.1. Introduction",
+      "7.2. Primordial Prevention",
+      "7.3. Primary Prevention",
+      "7.4. Secondary prevention"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-seven-prevention-of-diabetes/71-introduction",
+      "/guidelines/chapter-seven-prevention-of-diabetes/72-primordial-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/73-primary-prevention",
+      "/guidelines/chapter-seven-prevention-of-diabetes/74-secondary-prevention"
+    ]
+  },
+  {
+    "id": "section-8-1",
+    "title": "8.1. Introduction",
+    "level": "h2",
+    "number": "8.1",
+    "url": "/guidelines/chapter-eight-organization-of-diabetes-care/81-introduction",
+    "token_count": 203,
+    "breadcrumb": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.1. Introduction"
+    ],
+    "path": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.1. Introduction"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-8",
+    "parent_title": "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+    "parent_url": "/guidelines/chapter-eight-organization-of-diabetes-care",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-8-2",
+      "section-8-3"
+    ],
+    "sibling_titles": [
+      "8.2. Leadership and governance",
+      "8.3. Requirements for a Diabetic Clinic"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-eight-organization-of-diabetes-care/82-leadership-and-governance",
+      "/guidelines/chapter-eight-organization-of-diabetes-care/83-requirements-for-a-diabetic-clinic"
+    ]
+  },
+  {
+    "id": "section-8-2",
+    "title": "8.2. Leadership and governance",
+    "level": "h2",
+    "number": "8.2",
+    "url": "/guidelines/chapter-eight-organization-of-diabetes-care/82-leadership-and-governance",
+    "token_count": 1055,
+    "breadcrumb": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.2. Leadership and governance"
+    ],
+    "path": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.2. Leadership and governance"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-8",
+    "parent_title": "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+    "parent_url": "/guidelines/chapter-eight-organization-of-diabetes-care",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-8-1",
+      "section-8-3"
+    ],
+    "sibling_titles": [
+      "8.1. Introduction",
+      "8.3. Requirements for a Diabetic Clinic"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-eight-organization-of-diabetes-care/81-introduction",
+      "/guidelines/chapter-eight-organization-of-diabetes-care/83-requirements-for-a-diabetic-clinic"
+    ]
+  },
+  {
+    "id": "section-8-3",
+    "title": "8.3. Requirements for a Diabetic Clinic",
+    "level": "h2",
+    "number": "8.3",
+    "url": "/guidelines/chapter-eight-organization-of-diabetes-care/83-requirements-for-a-diabetic-clinic",
+    "token_count": 405,
+    "breadcrumb": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.3. Requirements for a Diabetic Clinic"
+    ],
+    "path": [
+      "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+      "8.3. Requirements for a Diabetic Clinic"
+    ],
+    "is_orphan": false,
+    "has_intro_content": false,
+    "parent_id": "chapter-8",
+    "parent_title": "CHAPTER EIGHT: ORGANIZATION OF DIABETES CARE",
+    "parent_url": "/guidelines/chapter-eight-organization-of-diabetes-care",
+    "children_ids": [],
+    "sibling_ids": [
+      "section-8-1",
+      "section-8-2"
+    ],
+    "sibling_titles": [
+      "8.1. Introduction",
+      "8.2. Leadership and governance"
+    ],
+    "sibling_urls": [
+      "/guidelines/chapter-eight-organization-of-diabetes-care/81-introduction",
+      "/guidelines/chapter-eight-organization-of-diabetes-care/82-leadership-and-governance"
+    ]
+  }
+]
