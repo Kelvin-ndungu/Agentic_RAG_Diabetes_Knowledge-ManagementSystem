@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Header({ onMenuClick, onSearchClick, isMobile }) {
+export default function Header({ onMenuClick, onSearchClick, isMobile, chatOpen }) {
   const [searchQuery, setSearchQuery] = useState('')
 
   const handleSearchSubmit = (e) => {
@@ -41,10 +41,15 @@ export default function Header({ onMenuClick, onSearchClick, isMobile }) {
           <input
             type="text"
             className="search-input-centered"
-            placeholder="Ask any question in plain language..."
+            placeholder={chatOpen ? "Use the chat interface to ask questions..." : "Ask any question in plain language..."}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={handleInputFocus}
+            disabled={chatOpen}
+            style={{ 
+              opacity: chatOpen ? 0.5 : 1,
+              cursor: chatOpen ? 'not-allowed' : 'text'
+            }}
           />
         </form>
       </div>

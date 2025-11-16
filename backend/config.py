@@ -6,14 +6,33 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
-load_dotenv()
+# Try to load from project root (parent of backend directory)
+backend_dir = Path(__file__).parent
+project_root = backend_dir.parent
+env_path = project_root / ".env"
+if env_path.exists():
+    load_dotenv(env_path)
+else:
+    load_dotenv()  # Fallback to default .env location
 
 # Required environment variables
 CLAUDE_API_KEY = os.getenv("CLAUDE_API_KEY")
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
 # Optional environment variables with defaults
-CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH", "./chroma_db")
+# Resolve chroma_db path relative to project root, not current working directory
+_default_chroma_path = project_root / "chroma_db"
+CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH")
+if CHROMA_DB_PATH:
+    # If provided, resolve relative to project root if it's a relative path
+    chroma_path = Path(CHROMA_DB_PATH)
+    if not chroma_path.is_absolute():
+        CHROMA_DB_PATH = str(project_root / CHROMA_DB_PATH)
+    else:
+        CHROMA_DB_PATH = str(chroma_path)
+else:
+    CHROMA_DB_PATH = str(_default_chroma_path)
+
 COLLECTION_NAME = os.getenv("COLLECTION_NAME", "diabetes_guidelines_v1")
 
 # Claude model configuration
@@ -52,6 +71,7 @@ def validate_config():
     if not chroma_path.exists():
         raise ValueError(
             f"ChromaDB path does not exist: {CHROMA_DB_PATH}\n"
+            f"Resolved from: {Path(__file__).parent.parent}\n"
             "Please ensure the vector store has been created."
         )
 

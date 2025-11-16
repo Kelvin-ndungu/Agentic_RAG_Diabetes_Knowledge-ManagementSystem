@@ -17,7 +17,7 @@ export default function Sidebar({ document, isOpen, onClose, isMobile }) {
       
       <aside className={`sidebar ${isOpen ? 'open' : ''} ${isMobile ? 'mobile' : ''}`}>
         <div className="sidebar-header">
-          <Link to="/" className="sidebar-title" onClick={onClose}>
+          <Link to="/" className="sidebar-title" onClick={isMobile ? onClose : undefined}>
             <h2>{document.title}</h2>
           </Link>
           {isMobile && (
@@ -37,7 +37,7 @@ export default function Sidebar({ document, isOpen, onClose, isMobile }) {
             <div className="nav-section">
               <NavTree 
                 items={document.chapters} 
-                onNavigate={onClose}
+                onNavigate={isMobile ? onClose : undefined}
               />
             </div>
           )}
@@ -47,7 +47,7 @@ export default function Sidebar({ document, isOpen, onClose, isMobile }) {
             <div className="nav-section">
               <NavTree 
                 items={document.frontMatter} 
-                onNavigate={onClose}
+                onNavigate={isMobile ? onClose : undefined}
               />
             </div>
           )}

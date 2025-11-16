@@ -4,6 +4,7 @@ import { sendMessage as sendChatMessage, clearChat } from '../services/chatServi
 export function useChat(initialQuery = '') {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
+  const [isStreaming, setIsStreaming] = useState(false)
   const [sessionId, setSessionId] = useState(null)
   const statusMessageIdRef = useRef(null)
 
@@ -72,6 +73,8 @@ export function useChat(initialQuery = '') {
       let finalAnswer = null
       let finalSources = []
       let finalSessionId = sessionId
+      let streamingContent = ""  // Accumulate streaming content
+      let answerMessageId = null  // Track the streaming answer message
 
       for await (const chunk of sendChatMessage(content, sessionId)) {
         if (chunk.type === 'status') {
@@ -87,8 +90,66 @@ export function useChat(initialQuery = '') {
             }
             return updated
           })
+        } else if (chunk.type === 'stream_start') {
+          // Start of streaming - replace status with empty answer message
+          setIsStreaming(true)
+          setMessages(prev => {
+            const updated = [...prev]
+            const statusIndex = updated.findIndex(msg => msg.id === statusId)
+            if (statusIndex !== -1) {
+              answerMessageId = statusId
+              updated[statusIndex] = {
+                id: statusId,
+                role: 'assistant',
+                content: '',
+                sources: [],
+                timestamp: new Date().toISOString()
+              }
+            }
+            return updated
+          })
+        } else if (chunk.type === 'token') {
+          // Token received - append to streaming content
+          streamingContent += chunk.content
+          // Update the answer message in real-time
+          if (answerMessageId) {
+            setMessages(prev => {
+              const updated = [...prev]
+              const answerIndex = updated.findIndex(msg => msg.id === answerMessageId)
+              if (answerIndex !== -1) {
+                updated[answerIndex] = {
+                  ...updated[answerIndex],
+                  content: streamingContent
+                }
+              }
+              return updated
+            })
+          }
+        } else if (chunk.type === 'stream_end') {
+          // End of streaming - finalize answer with sources
+          setIsStreaming(false)
+          finalAnswer = chunk.content || streamingContent
+          finalSources = chunk.sources || []
+          if (chunk.session_id) {
+            finalSessionId = chunk.session_id
+            setSessionId(chunk.session_id)
+          }
+          
+          // Update final message with sources
+          setMessages(prev => {
+            const updated = [...prev]
+            const answerIndex = updated.findIndex(msg => msg.id === (answerMessageId || statusId))
+            if (answerIndex !== -1) {
+              updated[answerIndex] = {
+                ...updated[answerIndex],
+                content: finalAnswer,
+                sources: finalSources
+              }
+            }
+            return updated
+          })
         } else if (chunk.type === 'answer') {
-          // Final answer received
+          // Final answer received (non-streaming)
           finalAnswer = chunk.content
           finalSources = chunk.sources || []
           if (chunk.session_id) {
@@ -101,8 +162,8 @@ export function useChat(initialQuery = '') {
         }
       }
 
-      // Replace status message with final answer
-      if (finalAnswer !== null) {
+      // Replace status message with final answer (fallback for non-streaming)
+      if (finalAnswer !== null && !answerMessageId) {
         setMessages(prev => {
           const updated = [...prev]
           const statusIndex = updated.findIndex(msg => msg.id === statusId)
@@ -131,8 +192,10 @@ export function useChat(initialQuery = '') {
 
       statusMessageIdRef.current = null
       setLoading(false)
+      setIsStreaming(false)
     } catch (error) {
       console.error('Chat error:', error)
+      setIsStreaming(false)
       
       // Replace status message with error message
       setMessages(prev => {
@@ -181,6 +244,6 @@ export function useChat(initialQuery = '') {
     setSessionId(null)
   }
 
-  return { messages, sendMessage, loading, clearMessages, sessionId }
+  return { messages, sendMessage, loading, isStreaming, clearMessages, sessionId }
 }
 

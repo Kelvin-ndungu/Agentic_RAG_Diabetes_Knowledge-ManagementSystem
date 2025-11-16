@@ -30,22 +30,56 @@ class FollowUpAnalysis(BaseModel):
     reasoning: str = Field(description="Explanation for the decision")
 
 
+class ClassifierOutput(BaseModel):
+    """Single LLM call output for all classification logic"""
+    # Query understanding
+    intent: Optional[str] = Field(None, description="Contextually-aware rephrased query for retrieval (only for substantive queries)")
+    
+    # Classification
+    query_type: Literal["greeting", "about_system", "substantive", "irrelevant", "unsafe"] = Field(
+        description="Type of user query"
+    )
+    is_relevant: bool = Field(description="Is query about diabetes management/care")
+    is_safe: bool = Field(description="Is safe to answer without personalized medical advice")
+    
+    # Direct response for non-substantive queries
+    direct_response: Optional[str] = Field(None, description="Complete response for greetings/about_system/irrelevant/unsafe queries")
+    
+    # Routing
+    should_generate: bool = Field(description="Whether to proceed to generator node")
+    
+    # User feedback (for streaming)
+    status_message: str = Field(description="Status update for user (e.g., 'Understanding your query...')")
+
+
+class GeneratorOutput(BaseModel):
+    """Generator node structured output"""
+    response: str = Field(description="Final answer with inline citations")
+    has_sufficient_info: bool = Field(description="Whether sufficient chunks were found")
+    sources_used: List[str] = Field(default_factory=list, description="List of source URLs used")
+
+
 class ChatState(MessagesState):
     """
-    State schema using MessagesState for chat template support.
-    Extends MessagesState with custom fields for classification, retrieval, and sources.
+    Optimized state schema with structured outputs.
+    Matches the notebook implementation for 2-LLM-call optimization.
     """
-    # Classification result
-    classification: Optional[QuerySafetyClassification]
+    # Classifier outputs
+    classifier_output: Optional[ClassifierOutput]
     
-    # Retrieved chunks (replaced on new retrieval)
+    # Retrieval (programmatic)
     retrieved_chunks: List[Dict]
     
-    # Source citations for response
+    # Generator outputs
+    generator_output: Optional[GeneratorOutput]
     sources: List[Source]
     
-    # Whether message is a follow-up (determined by LLM)
-    is_followup: bool
+    # Final response
+    final_response: Optional[str]
+    
+    # Legacy fields (kept for backward compatibility during transition)
+    classification: Optional[QuerySafetyClassification] = None
+    is_followup: bool = False
 
 
 # API Request/Response Models

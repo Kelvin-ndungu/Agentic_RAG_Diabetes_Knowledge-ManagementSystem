@@ -53,6 +53,7 @@ export default function HomePage({ document }) {
               <p><strong>Developed by:</strong> Kelvin Ndungu Kinyanjui</p>
               <p><strong>Mobile:</strong> <a href="tel:+254713281876">+254 713 281 876</a></p>
               <p><strong>Email:</strong> <a href="mailto:Kinyanjuikelvin047@gmail.com">Kinyanjuikelvin047@gmail.com</a></p>
+              <p><strong>GitHub Repository:</strong> <a href="https://github.com/Kelvin-ndungu/Agentic_RAG_Diabetes_Knowledge-ManagementSystem" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
             </div>
           </div>
 

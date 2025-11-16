@@ -4,7 +4,7 @@ import ChatInput from './ChatInput'
 import { useChat } from '../../hooks/useChat'
 
 export default function ChatInterface({ isOpen, onClose, initialQuery = '', isMobile = false, onWidthChange }) {
-  const { messages, sendMessage, loading, clearMessages } = useChat(initialQuery)
+  const { messages, sendMessage, loading, isStreaming, clearMessages } = useChat(initialQuery)
   const [width, setWidth] = useState(33.33) // Default to 1/3 (33.33%)
   const [isDragging, setIsDragging] = useState(false)
   const chatRef = useRef(null)
@@ -105,7 +105,7 @@ export default function ChatInterface({ isOpen, onClose, initialQuery = '', isMo
           </div>
         </div>
         
-        <MessageList messages={messages} loading={loading} />
+        <MessageList messages={messages} loading={loading} isStreaming={isStreaming} />
         
         <ChatInput 
           onSend={handleSend}

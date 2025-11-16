@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useDocument } from './hooks/useDocument'
 import Header from './components/layout/Header'
 import Sidebar from './components/layout/Sidebar'
@@ -10,25 +10,32 @@ import './App.css'
 
 function App() {
   const { document, loading, error } = useDocument()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768) // Open by default on desktop
   const [chatOpen, setChatOpen] = useState(false)
   const [chatInitialQuery, setChatInitialQuery] = useState('')
   const [chatWidth, setChatWidth] = useState(33.33)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
 
+  const toggleSidebar = useCallback(() => {
+    setSidebarOpen(prev => !prev)
+  }, [])
+
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768
+      const wasMobile = isMobile
       setIsMobile(mobile)
-      // Auto-close sidebar on mobile when switching to desktop
-      if (!mobile && sidebarOpen) {
+      // Auto-open sidebar when switching to desktop, close when switching to mobile
+      if (!mobile && wasMobile) {
+        setSidebarOpen(true)
+      } else if (mobile && !wasMobile) {
         setSidebarOpen(false)
       }
     }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [sidebarOpen])
+  }, [isMobile])
 
   const handleSearchClick = (query = '') => {
     setChatInitialQuery(query)
@@ -74,9 +81,10 @@ function App() {
     <BrowserRouter>
       <div className="app">
         <Header 
-          onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+          onMenuClick={toggleSidebar}
           onSearchClick={handleSearchClick}
           isMobile={isMobile}
+          chatOpen={chatOpen}
         />
         
         <div className="main-container">
@@ -87,7 +95,7 @@ function App() {
             isMobile={isMobile}
           />
           
-          <div className="content-wrapper" style={chatOpen && !isMobile ? { 
+          <div className={`content-wrapper ${!sidebarOpen && !isMobile ? 'sidebar-closed' : ''}`} style={chatOpen && !isMobile ? { 
             width: `calc(${100 - chatWidth}vw - 240px)`
           } : {}}>
             <main 

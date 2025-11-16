@@ -4,10 +4,8 @@ Graph builder for LangGraph workflow.
 from langgraph.graph import StateGraph, END
 from .models import ChatState
 from .graph_nodes import (
-    classify_query,
-    route_classifier,
-    not_relevant_response,
-    unsafe_response,
+    classify_query_unified,
+    retrieval_node,
     generator_node,
     set_chroma_reader
 )
@@ -24,9 +22,22 @@ def initialize_state(state: ChatState) -> ChatState:
     return state
 
 
+def route_after_classifier(state: ChatState) -> str:
+    """Route based on classifier decision"""
+    classifier_output = state.get("classifier_output")
+    if classifier_output and classifier_output.should_generate:
+        return "retrieval"
+    else:
+        return END
+
+
 def build_graph(chroma_reader):
     """
-    Build and compile the LangGraph workflow.
+    Build and compile the optimized LangGraph workflow.
+    
+    Optimized workflow with only 2 LLM calls:
+    - Classifier: Single LLM call for all classification logic
+    - Generator: Single LLM call for answer generation
     
     Args:
         chroma_reader: ChromaDBReader instance to use for retrieval
@@ -41,28 +52,25 @@ def build_graph(chroma_reader):
     workflow = StateGraph(ChatState)
     
     # Add nodes
-    workflow.add_node("classify", classify_query)
-    workflow.add_node("not_relevant", not_relevant_response)
-    workflow.add_node("unsafe", unsafe_response)
+    workflow.add_node("classifier", classify_query_unified)
+    workflow.add_node("retrieval", retrieval_node)
     workflow.add_node("generator", generator_node)
     
     # Set entry point
-    workflow.set_entry_point("classify")
+    workflow.set_entry_point("classifier")
     
-    # Add conditional routing from classifier
+    # Add conditional routing after classifier
     workflow.add_conditional_edges(
-        "classify",
-        route_classifier,
+        "classifier",
+        route_after_classifier,
         {
-            "not_relevant": "not_relevant",
-            "unsafe": "unsafe",
-            "generator": "generator"
+            "retrieval": "retrieval",
+            END: END
         }
     )
     
-    # Add edges to END
-    workflow.add_edge("not_relevant", END)
-    workflow.add_edge("unsafe", END)
+    # Linear path for substantive queries
+    workflow.add_edge("retrieval", "generator")
     workflow.add_edge("generator", END)
     
     # Compile graph

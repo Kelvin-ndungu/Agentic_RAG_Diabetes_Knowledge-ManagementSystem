@@ -2,9 +2,10 @@
 Graph node functions for LangGraph workflow.
 """
 import json
+import re
 from typing import List, Dict, Any, Optional, Literal
 from pydantic import BaseModel, Field
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.output_parsers import StrOutputParser, PydanticOutputParser
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 from langchain.tools import tool, ToolRuntime
@@ -15,7 +16,9 @@ from .models import (
     QuerySafetyClassification,
     Source,
     FollowUpAnalysis,
-    ChatState
+    ChatState,
+    ClassifierOutput,
+    GeneratorOutput
 )
 from .llm_setup import get_llm
 
@@ -77,166 +80,257 @@ def create_structured_chain(prompt_template: str, model_class: type[BaseModel], 
     return chain
 
 
-def classify_query(state: ChatState) -> ChatState:
+def classify_query_unified(state: ChatState) -> ChatState:
     """
-    Classify query in two steps:
-    1. First check if relevant to diabetes
-    2. Only if relevant, check if safe to answer
-    
-    Extracts the last user message from state["messages"].
+    Single LLM call handles all classification logic:
+    - Greetings
+    - Questions about system
+    - Intent understanding/rephrasing
+    - Relevance check
+    - Safety check
+    - Routing decision
     
     Returns:
-        Updated state with classification stored in state["classification"]
+        Updated state with classifier_output stored in state["classifier_output"]
     """
-    # Extract last user message
-    messages = state.get("messages", [])
-    if not messages:
-        state["classification"] = QuerySafetyClassification(
-            is_relevant=False,
-            is_safe=False,
-            risk_level="none",
-            reasoning="No messages found in state"
-        )
-        return state
-    
-    # Get the last user message
-    last_message = None
-    for msg in reversed(messages):
-        if isinstance(msg, HumanMessage):
-            last_message = msg
-            break
-    
-    if not last_message:
-        state["classification"] = QuerySafetyClassification(
-            is_relevant=False,
-            is_safe=False,
-            risk_level="none",
-            reasoning="No user message found"
-        )
-        return state
-    
-    query = last_message.content if hasattr(last_message, 'content') else str(last_message)
     writer = get_stream_writer()
     
-    # Step 1: Check relevance first
-    relevance_prompt = """Classify if this query is relevant to diabetes management, treatment, diagnosis, prevention, or related healthcare topics.
+    classifier_prompt = ChatPromptTemplate.from_messages([
+        ("system", """You are the classification system for a Diabetes Knowledge Management Assistant based on Kenya National Clinical Guidelines.
 
-Query: "{query}"
+Your job is to analyze user queries and determine the appropriate response path.
 
-Determine if the query is about:
-- Diabetes diagnosis and symptoms
-- Treatment options (medications, insulin therapy, lifestyle changes)
-- Diabetes management during pregnancy
-- Hypoglycemia and hyperglycemia
-- Blood glucose monitoring
-- Nutrition and diabetes
-- Diabetes complications and prevention
-- Other diabetes-related topics
+## Query Types & Responses:
 
-If the query is NOT about diabetes (e.g., weather, general health, other diseases), it is not relevant.
+1. **GREETING** (e.g., "Hi", "Hello", "Hey there")
+   - query_type: "greeting"
+   - direct_response: "Hello! I'm a diabetes knowledge assistant based on Kenya National Clinical Guidelines for Diabetes Management. I can help healthcare providers with questions about diabetes diagnosis, treatment, management, and prevention. How can I assist you today?"
+   - is_relevant: False
+   - is_safe: True
+   - should_generate: False
+   - status_message: "Processing greeting..."
 
-Respond with structured output."""
+2. **ABOUT_SYSTEM** (e.g., "What can you do?", "How do you work?", "What are you?")
+   - query_type: "about_system"
+   - direct_response: "I'm a specialized AI assistant for healthcare providers focused on diabetes management. I provide information based on the Kenya National Clinical Guidelines for the Management of Diabetes. I can answer questions about:\\n\\n- Diabetes diagnosis and screening\\n- Treatment options and medications\\n- Management strategies\\n- Complications and prevention\\n- Clinical protocols\\n\\nI cannot provide patient-specific medical advice. How can I help with your diabetes-related question?"
+   - is_relevant: False
+   - is_safe: True
+   - should_generate: False
+   - status_message: "Explaining system capabilities..."
+
+3. **IRRELEVANT** (Not about diabetes)
+   - query_type: "irrelevant"
+   - is_relevant: False
+   - is_safe: True
+   - direct_response: "I'm sorry, but I'm specifically designed to answer questions about diabetes management based on the Kenya National Clinical Guidelines. Your query doesn't appear to be related to diabetes. Please ask me about diabetes diagnosis, treatment, management, or prevention."
+   - should_generate: False
+   - status_message: "Analyzing query relevance..."
+
+4. **UNSAFE** (Patient-specific medical advice, diagnoses, prognoses)
+   - query_type: "unsafe"
+   - is_relevant: True
+   - is_safe: False
+   - direct_response: "I cannot provide patient-specific medical advice, diagnoses, or treatment recommendations. This type of question requires a healthcare provider who can evaluate the full clinical context and provide personalized guidance.\\n\\nI can help with general questions about diabetes management guidelines and protocols. Would you like to rephrase your question in a more general way?"
+   - should_generate: False
+   - status_message: "Evaluating query safety..."
+
+5. **SUBSTANTIVE** (Safe diabetes questions)
+   - query_type: "substantive"
+   - is_relevant: True
+   - is_safe: True
+   - intent: <Rephrase query with full context for retrieval>
+   - direct_response: None
+   - should_generate: True
+   - status_message: "Understanding your query and searching knowledge base..."
+
+## Intent Rephrasing (for SUBSTANTIVE queries only):
+- If follow-up question, incorporate context from conversation history
+- If standalone question, ensure it's clear and complete
+- Make it suitable for semantic search - use natural medical/clinical language
+- DO NOT add phrases like "guidelines", "Kenya National Clinical Guidelines", "according to guidelines" - the knowledge base contains clinical content, not meta-references
+- Focus on the actual medical/clinical concepts and terms
+- Example: User says "What about that?" after discussing Type 2 diabetes → intent: "What are the management approaches for Type 2 diabetes?"
+- Example: User says "How is diabetes diagnosed?" → intent: "What are the diagnostic criteria and screening procedures for diabetes?"
+- Example: User says "What about treatment?" → intent: "What are the treatment options for Type 2 diabetes?"
+
+## Safety Examples:
+**UNSAFE:**
+- "My patient has diabetes and blood pressure, will they die?"
+- "Should I stop taking my insulin?"
+- "What dose of metformin should I give this patient?"
+
+**SAFE:**
+- "What are the general treatment options for Type 2 diabetes?"
+- "What are the guidelines for insulin therapy initiation?"
+- "What are the recommended HbA1c targets in diabetes management?"
+
+## Important:
+- status_message should be user-friendly and informative
+- direct_response should be complete, helpful, and professional
+- intent should be self-contained and context-aware for retrieval
+- Always be polite and helpful even when declining
+
+## Output Format:
+You MUST respond with a valid JSON object with the following structure:
+{{
+  "query_type": "greeting|about_system|substantive|irrelevant|unsafe",
+  "is_relevant": true/false,
+  "is_safe": true/false,
+  "should_generate": true/false,
+  "status_message": "Status message for user",
+  "intent": "Rephrased query (only for substantive queries, null otherwise)",
+  "direct_response": "Complete response (only for non-substantive queries, null otherwise)"
+}}
+
+Return ONLY valid JSON, no markdown formatting or additional text."""),
+        MessagesPlaceholder(variable_name="messages"),
+    ])
     
-    relevance_system = """You are a diabetes expert classifier. First check if the query is relevant to diabetes topics."""
+    # Helper function to parse output (JSON or markdown)
+    def parse_classifier_output(text: str) -> ClassifierOutput:
+        """Parse classifier output - handles both JSON and markdown formats"""
+        # First, try to extract JSON from the text
+        json_match = re.search(r'\{[^{}]*"query_type"[^{}]*\}', text, re.DOTALL)
+        if json_match:
+            try:
+                json_str = json_match.group(0)
+                data = json.loads(json_str)
+                return ClassifierOutput(**data)
+            except:
+                pass
+        
+        # Try to parse entire text as JSON
+        try:
+            data = json.loads(text.strip())
+            return ClassifierOutput(**data)
+        except:
+            pass
+        
+        # Fallback: parse markdown-formatted output
+        query_type_match = re.search(r'\*\*query_type\*\*:\s*(\w+)', text)
+        is_relevant_match = re.search(r'\*\*is_relevant\*\*:\s*(True|False)', text)
+        is_safe_match = re.search(r'\*\*is_safe\*\*:\s*(True|False)', text)
+        should_generate_match = re.search(r'\*\*should_generate\*\*:\s*(True|False)', text)
+        status_message_match = re.search(r'\*\*status_message\*\*:\s*(.+?)(?=\n\*\*|\Z)', text, re.DOTALL)
+        intent_match = re.search(r'\*\*intent\*\*:\s*(.+?)(?=\n\*\*|\Z)', text, re.DOTALL)
+        direct_response_match = re.search(r'\*\*direct_response\*\*:\s*(.+?)(?=\n\*\*|\Z)', text, re.DOTALL)
+        
+        # Parse values
+        query_type = query_type_match.group(1) if query_type_match else "substantive"
+        is_relevant = is_relevant_match.group(1) == "True" if is_relevant_match else True
+        is_safe = is_safe_match.group(1) == "True" if is_safe_match else True
+        should_generate = should_generate_match.group(1) == "True" if should_generate_match else True
+        status_message = status_message_match.group(1).strip() if status_message_match else "Processing query..."
+        intent = intent_match.group(1).strip() if intent_match else None
+        direct_response = direct_response_match.group(1).strip() if direct_response_match else None
+        
+        return ClassifierOutput(
+            query_type=query_type,
+            is_relevant=is_relevant,
+            is_safe=is_safe,
+            should_generate=should_generate,
+            status_message=status_message,
+            intent=intent,
+            direct_response=direct_response
+        )
     
     try:
-        # Create a simple relevance model
-        class RelevanceClassification(BaseModel):
-            is_relevant: bool = Field(description="Whether the query is relevant to diabetes management and care")
-            reasoning: str = Field(description="Brief explanation")
+        # Use direct LLM call with robust parsing (Claude works well with JSON)
+        llm = get_llm()
+        chain = classifier_prompt | llm | StrOutputParser()
+        raw_output = chain.invoke({"messages": state.get("messages", [])})
+        result = parse_classifier_output(raw_output)
         
-        relevance_chain = create_structured_chain(
-            relevance_prompt,
-            RelevanceClassification,
-            relevance_system,
-            query=query
-        )
+        # Store in state
+        state["classifier_output"] = result
         
-        relevance_result: RelevanceClassification = relevance_chain.invoke({})
+        # Set final response for non-substantive queries
+        if not result.should_generate:
+            state["final_response"] = result.direct_response
+            # Add response to messages for consistency
+            if result.direct_response:
+                state["messages"] = state.get("messages", []) + [AIMessage(content=result.direct_response)]
         
+        # Stream status update with intent for substantive queries
         if writer:
-            writer({"type": "classification_step", "message": f"Relevance check: {relevance_result.is_relevant}"})
+            if result.should_generate and result.intent:
+                # For substantive queries, include intent in status
+                status_msg = f"I am getting the relevant resources to answer: {result.intent}"
+            else:
+                status_msg = result.status_message
+            writer({"type": "classifier_status", "message": status_msg})
         
-        # If not relevant, return immediately (no safety check needed)
-        if not relevance_result.is_relevant:
-            classification_result = QuerySafetyClassification(
-                is_relevant=False,
-                is_safe=False,
-                risk_level="none",
-                reasoning=relevance_result.reasoning
-            )
-            state["classification"] = classification_result
-            print(f"✓ Query classified: Not relevant to diabetes")
-            if classification_result.reasoning:
-                print(f"  Reasoning: {classification_result.reasoning[:100]}...")
-            return state
-        
-        # Step 2: Only if relevant, check safety
-        class SafetyClassification(BaseModel):
-            is_safe: bool = Field(description="Whether the query is safe to answer (must be true or false)")
-            risk_level: Literal["none", "low", "medium", "high"] = Field(description="Risk level: 'none' or 'low' for safe, 'medium' or 'high' for unsafe")
-            reasoning: str = Field(description="Brief explanation for the safety assessment")
-        
-        safety_prompt = """Classify if this RELEVANT diabetes query is safe to answer without risk of harm.
-
-Query: "{query}"
-
-This query is already confirmed to be relevant to diabetes. Now assess safety.
-
-Unsafe examples (high risk):
-- "My patient has diabetes and blood pressure, will they die?"
-- Questions requiring personalized medical diagnosis
-- Questions about specific patient outcomes or prognoses
-- Questions asking for medical advice for a specific patient
-
-Safe examples (low/no risk):
-- "How is type 2 diabetes diagnosed?"
-- "What are the treatment options for diabetes?"
-- "What are the guidelines for insulin therapy?"
-- General questions about diabetes management
-
-You MUST provide:
-- is_safe: true or false (boolean, required)
-- risk_level: "none" (safe), "low" (mostly safe), "medium" (risky), or "high" (unsafe)
-
-Respond with structured output."""
-        
-        safety_system = """You are a diabetes expert classifier. Assess safety/risk level for relevant diabetes queries. You must provide is_safe as a boolean (true or false)."""
-        
-        safety_chain = create_structured_chain(
-            safety_prompt,
-            SafetyClassification,
-            safety_system,
-            query=query
-        )
-        
-        safety_result: SafetyClassification = safety_chain.invoke({})
-        
-        # Convert to QuerySafetyClassification
-        classification_result = QuerySafetyClassification(
-            is_relevant=True,
-            is_safe=safety_result.is_safe,
-            risk_level=safety_result.risk_level,
-            reasoning=safety_result.reasoning
-        )
-        
-        state["classification"] = classification_result
-        
-        if writer:
-            writer({"type": "classification_complete", "message": f"Relevant={classification_result.is_relevant}, Safe={classification_result.is_safe}, Risk={classification_result.risk_level}"})
-        
-        print(f"✓ Query classified: Relevant={classification_result.is_relevant}, Safe={classification_result.is_safe}, Risk={classification_result.risk_level}")
-        if classification_result.reasoning:
-            print(f"  Reasoning: {classification_result.reasoning[:100]}...")
+        print(f"✓ Classified as: {result.query_type}")
+        print(f"  Relevant={result.is_relevant}, Safe={result.is_safe}, Generate={result.should_generate}")
+        if result.intent:
+            print(f"  Intent: {result.intent[:80]}...")
             
     except Exception as e:
         print(f"⚠ Classification error: {e}")
-        state["classification"] = QuerySafetyClassification(
+        import traceback
+        traceback.print_exc()
+        # Create fallback classification
+        result = ClassifierOutput(
+            query_type="irrelevant",
             is_relevant=False,
-            is_safe=False,
-            risk_level="none",
-            reasoning=f"Classification failed: {str(e)}"
+            is_safe=True,
+            should_generate=False,
+            status_message="Processing query...",
+            intent=None,
+            direct_response="I encountered an error while processing your query. Please try again."
         )
+        state["classifier_output"] = result
+        state["final_response"] = result.direct_response
+    
+    return state
+
+
+def retrieval_node(state: ChatState) -> ChatState:
+    """
+    Programmatic retrieval based on classifier intent.
+    No LLM calls - pure Python logic.
+    """
+    classifier_output = state.get("classifier_output")
+    writer = get_stream_writer()
+    
+    if not classifier_output or not classifier_output.should_generate:
+        # Skip retrieval for non-substantive queries
+        return state
+    
+    intent = classifier_output.intent
+    
+    if not intent:
+        print("⚠ No intent available for retrieval")
+        return state
+    
+    # Always do fresh retrieval with rephrased intent
+    try:
+        chunks = chroma_reader.search(
+            query=intent,
+            n_results=5,
+            min_similarity=0.4
+        )
+        
+        # Update state
+        state["retrieved_chunks"] = chunks
+        
+        # Stream retrieval status
+        if writer:
+            if chunks:
+                writer({"type": "retrieval_status", "message": f"Found {len(chunks)} relevant sources. Generating answer..."})
+            else:
+                writer({"type": "retrieval_status", "message": "No sources found with sufficient relevance. Responding..."})
+        
+        print(f"✓ Retrieved {len(chunks)} chunks (similarity >= 0.4)")
+        if chunks:
+            print(f"  Top relevance: {chunks[0]['relevance_score']:.3f}")
+    except Exception as e:
+        print(f"⚠ Retrieval error: {e}")
+        import traceback
+        traceback.print_exc()
+        state["retrieved_chunks"] = []
+        if writer:
+            writer({"type": "retrieval_error", "message": "Error during retrieval. Continuing..."})
     
     return state
 
@@ -400,273 +494,307 @@ For patient-specific medical advice, please consult with a healthcare provider w
 
 def generator_node(state: ChatState) -> ChatState:
     """
-    Generator node that:
-    1. Analyzes intent (follow-up vs new)
-    2. Uses agent to decide retrieval
-    3. Makes single retrieval call if needed
-    4. Generates answer with inline citations and sources section
+    Single LLM call for generation with conversation history.
+    Handles both cases: with chunks and without chunks.
     """
     writer = get_stream_writer()
-    messages = state.get("messages", [])
-    
-    # Get last user message
-    last_user_msg = None
-    for msg in reversed(messages):
-        if isinstance(msg, HumanMessage):
-            last_user_msg = msg
-            break
-    
-    if not last_user_msg:
-        state["messages"] = state.get("messages", []) + [AIMessage(content="Error: No user message found.")]
-        return state
-    
-    query = last_user_msg.content if hasattr(last_user_msg, 'content') else str(last_user_msg)
-    
-    # Step 1: Analyze intent
-    state = analyze_intent(state)
-    is_followup = state.get("is_followup", False)
-    existing_chunks = state.get("retrieved_chunks", [])
-    
-    if writer:
-        writer({"type": "generator_start", "message": f"Generator node: Follow-up={is_followup}, Existing chunks={len(existing_chunks)}"})
-    
-    # Step 2: Create agent with retrieval tool
-    agent_tools = [search_semantic_only]
-    
-    # Build conversation context for agent
-    conversation_context = ""
-    if len(messages) > 1:
-        for msg in messages[:-1]:  # Exclude last message
-            role = "User" if isinstance(msg, HumanMessage) else "Assistant"
-            content = msg.content if hasattr(msg, 'content') else str(msg)
-            conversation_context += f"{role}: {content}\n"
-    
-    system_prompt = f"""You are a diabetes specialist assistant helping doctors make informed decisions based on the Kenya National Clinical Guidelines for the Management of Diabetes.
-
-## Your Task
-
-You need to decide whether to retrieve information from the knowledge base to answer the user's query.
-
-## Available Tool
-
-**search_semantic_only**: Search the knowledge base using semantic similarity
-   - Use this tool if you need to retrieve information to answer the query
-   - Only chunks with similarity > 0.4 are returned
-   - You can make ONE retrieval call per query
-
-## Decision Guidelines
-
-- **Retrieve if**: You need information from the knowledge base to answer accurately
-- **Don't retrieve if**: You can answer from existing context or it's a simple follow-up that doesn't need new information
-
-## Important Rules
-
-1. You can make ONLY ONE retrieval call per query
-2. After retrieving (or deciding not to retrieve), generate a comprehensive answer
-3. Your answer must be:
-   - Factual: Based only on information from retrieved chunks or existing context
-   - Truthful: Do not make up information
-   - Safe: Do not provide personalized medical advice
-4. Use numbered references in the text instead of inline citations
-   - When referencing information, use format: [1], [2], [3], etc.
-   - These numbers correspond to the sources listed at the end
-   - DO NOT use inline links like [Title](url) in the body text
-5. At the end, add a "## Sources" section with numbered list of all sources used
-   - Format: 1. [Title](url), 2. [Title](url), etc.
-   - Use the EXACT URLs from the chunks (they start with /guidelines/)
-
-## Current Context
-
-{'This appears to be a follow-up question.' if is_followup else 'This appears to be a new question.'}
-{'You have existing retrieved chunks available.' if existing_chunks else 'No existing chunks available.'}
-
-{conversation_context if conversation_context else ''}
-
-Now decide: Do you need to retrieve information? If yes, use search_semantic_only. Then generate your answer with inline citations and a sources section."""
     
     try:
-        llm = get_llm()
+        chunks = state.get("retrieved_chunks", [])
+        classifier_output = state.get("classifier_output")
         
-        # Create agent
-        agent = create_agent(
-            llm,
-            agent_tools,
-            system_prompt=system_prompt
-        )
+        if not classifier_output:
+            state["final_response"] = "Error: No classifier output available."
+            state["messages"] = state.get("messages", []) + [AIMessage(content=state["final_response"])]
+            return state
         
-        # Prepare agent input
-        agent_input = {
-            "messages": [HumanMessage(content=f"Query: {query}\n\nDecide if you need to retrieve information, then generate a comprehensive answer with citations.")]
-        }
+        intent = classifier_output.intent
+        if not intent:
+            state["final_response"] = "Error: No intent available for generation."
+            state["messages"] = state.get("messages", []) + [AIMessage(content=state["final_response"])]
+            return state
         
-        if writer:
-            writer({"type": "agent_start", "message": "Starting retrieval decision agent"})
-        
-        # Invoke agent
-        agent_result = agent.invoke(agent_input)
-        agent_messages = agent_result.get("messages", [])
-        
-        # Extract retrieved chunks from tool messages
-        retrieved_chunks = []
-        final_answer = None
-        
-        for msg in agent_messages:
-            # Extract chunks from ToolMessage
-            if isinstance(msg, ToolMessage):
-                content = msg.content
-                if isinstance(content, str):
-                    try:
-                        chunks_data = json.loads(content)
-                        if isinstance(chunks_data, list):
-                            for chunk in chunks_data:
-                                if isinstance(chunk, dict) and chunk.get("relevance_score", 0.0) >= 0.4:
-                                    retrieved_chunks.append(chunk)
-                    except (json.JSONDecodeError, TypeError):
-                        pass
-                elif isinstance(content, list):
-                    for chunk in content:
-                        if isinstance(chunk, dict) and chunk.get("relevance_score", 0.0) >= 0.4:
-                            retrieved_chunks.append(chunk)
+        # Build context from chunks
+        # IMPORTANT: Number chunks sequentially (1, 2, 3...) and track chunk-to-source mapping
+        if chunks:
+            context_parts = []
+            chunk_to_source_map = {}  # Maps chunk index (1-based) to Source object
+            seen_urls = {}  # Maps URL to first Source object with that URL
             
-            # Extract final answer from AIMessage (when no tool calls)
-            if isinstance(msg, AIMessage) and msg.content:
-                if not msg.tool_calls or len(msg.tool_calls) == 0:
-                    final_answer = msg.content
-        
-        # If agent retrieved chunks, replace old chunks
-        if retrieved_chunks:
-            state["retrieved_chunks"] = retrieved_chunks
-            if writer:
-                writer({"type": "retrieval_complete", "message": f"Retrieved {len(retrieved_chunks)} chunks"})
-        
-        # If no answer from agent but we have chunks, generate answer
-        if not final_answer:
-            # Use existing chunks or newly retrieved chunks
-            chunks_to_use = retrieved_chunks if retrieved_chunks else existing_chunks
+            for i, chunk in enumerate(chunks, 1):  # Start numbering from 1
+                metadata = chunk.get("metadata", {})
+                title = metadata.get("title", "Unknown")
+                url = metadata.get("url", "")
+                content = chunk.get("content", "")
+                relevance = chunk.get("relevance_score", 0)
+                
+                # Format context clearly with source info
+                context_parts.append(f"--- Source {i}: {title} (Relevance: {relevance:.2f}) ---\nURL: {url}\n\n{content}")
+                
+                # Create source for this chunk
+                source = Source(
+                    title=title,
+                    url=url,
+                    chunk_id=chunk.get("chunk_id", "")
+                )
+                
+                # Map this chunk index to its source
+                chunk_to_source_map[i] = source
+                
+                # Track first occurrence of each URL for deduplication
+                if url and url not in seen_urls:
+                    seen_urls[url] = source
             
-            if chunks_to_use:
-                # Format chunks for generation
-                context_parts = []
-                sources_list = []
-                seen_urls = set()
-                
-                for chunk in chunks_to_use:
-                    metadata = chunk.get("metadata", {})
-                    title = metadata.get("title", "Unknown")
-                    url = metadata.get("url", "")
-                    content = chunk.get("content", "")
-                    
-                    context_parts.append(f"[{title}]({url})\n{content}")
-                    
-                    # Collect unique sources
-                    if url and url not in seen_urls:
-                        sources_list.append(Source(
-                            title=title,
-                            url=url,
-                            chunk_id=chunk.get("chunk_id", "")
-                        ))
-                        seen_urls.add(url)
-                
-                context = "\n\n".join(context_parts)
-                
-                # Build sources list with numbers for reference
-                sources_with_numbers = []
-                for i, source in enumerate(sources_list, 1):
-                    sources_with_numbers.append(f"{i}. {source.title} - {source.url}")
-                
-                sources_text = "\n".join(sources_with_numbers)
-                
-                # Generate answer
-                gen_prompt = """You are a diabetes specialist helping doctors make informed decisions. Answer based on the Kenya National Clinical Guidelines.
+            context = "\n\n".join(context_parts)
+            has_context = True
+        else:
+            context = "No relevant information found in knowledge base."
+            chunk_to_source_map = {}
+            seen_urls = {}
+            has_context = False
+        
+        # Build generator prompt with conversation history
+        generator_prompt = ChatPromptTemplate.from_messages([
+            ("system", """You are a diabetes specialist assistant for healthcare providers, based on Kenya National Clinical Guidelines for Diabetes Management.
 
-Query: "{query}"
+## Your Task:
+Answer the user's query using the provided context from the knowledge base.
 
-Context from Knowledge Base:
+## CRITICAL GUARDRAILS:
+1. **USE the provided context** - The context contains relevant clinical information. If context is provided, you MUST use it to answer the question
+2. **Be factual and truthful** - Base your answer on the context provided
+3. **No personalized medical advice** - Provide general clinical information only
+4. **Use numbered citations** - Format: [1], [2], [3] etc. when referencing specific information from the context
+5. **DO NOT add a Sources section** - The frontend will handle displaying sources automatically
+6. **Be comprehensive** - Extract and use ALL relevant information from the context to provide a thorough answer
+
+## Critical Instructions:
+- **If context is provided above, you MUST answer the question** - Do NOT say "insufficient information"
+- The context contains relevant clinical information that was retrieved specifically for this query
+- Extract and synthesize information from ALL provided context chunks
+- Only mention "insufficient information" if the context section explicitly says "No relevant information found"
+- When context is provided, your job is to answer comprehensively using that information
+- **Use numbered citations [1], [2], [3] etc.** - Reference sources by their number from the available sources list
+- **Only cite sources you actually use** - If you mention information from Source 1, use [1]. If from Source 2, use [2], etc.
+- **DO NOT include a "## Sources" section at the end** - The system will automatically extract and display only the sources you actually cited
+- **DO NOT use [Title](url) format** - Use only numbered references like [1], [2], [3]
+
+## Response Format:
+- Clear, clinical language for healthcare providers
+- Numbered citations throughout: [1], [2], [3] when referencing specific information
+- Structured with headers if appropriate
+- NO Sources section - just use numbered citations
+- Be comprehensive - use all relevant information from the context"""),
+            MessagesPlaceholder(variable_name="messages"),
+            ("human", """User Query: {intent}
+
+Relevant Information from Knowledge Base:
 {context}
 
-Available Sources (use these for numbered references):
-{sources_list}
+IMPORTANT CITATION INSTRUCTIONS:
+- Each chunk in the context above is labeled as "Source 1", "Source 2", "Source 3", etc.
+- When you reference information from a chunk, cite it using its Source number: [1], [2], [3], etc.
+- For example, if you use information from "Source 1", cite it as [1]
+- If you use information from "Source 2", cite it as [2]
+- Only cite sources (chunks) that you actually use in your answer
+- Do NOT cite sources you don't use
 
-{conversation_context}
+CRITICAL: 
+- The context above contains relevant clinical information. Use this information to provide a comprehensive answer to the user's query.
+- Include specific details, recommendations, and numbered citations [1], [2], [3] etc. when referencing information from specific chunks.
+- Only cite chunks you actually use in your answer.
 
-Instructions:
-1. Answer using ONLY information from the provided context
-2. Be FACTUAL, TRUTHFUL, and SAFE
-3. Explain the information in SIMPLE, CLEAR language that is easy to understand
-   - Use plain language without medical jargon when possible
-   - Break down complex concepts into understandable parts
-   - DO NOT dilute or oversimplify the content - maintain accuracy and completeness
-   - Balance simplicity with thoroughness
-4. Use numbered references in the text instead of inline citations
-   - When referencing information, use format: [1], [2], [3], etc.
-   - These numbers correspond to the sources listed at the end
-   - Example: "According to the guidelines [1], diabetes management requires..."
-   - DO NOT use inline links like [Title](url) in the body text
-5. Use clear, professional language appropriate for healthcare professionals
-6. Include specific details and recommendations from the guidelines
-7. Format your answer with proper markdown headings, lists, and paragraphs
-8. At the end, add a "## Sources" section with numbered list of all sources used
-   - Format: 1. [Title](url), 2. [Title](url), etc.
-   - Use the EXACT URLs from the sources list above
-
-Generate the answer:"""
-                
-                gen_chain = ChatPromptTemplate.from_template(gen_prompt) | llm | StrOutputParser()
-                final_answer = gen_chain.invoke({
-                    "query": query,
-                    "context": context,
-                    "sources_list": sources_text,
-                    "conversation_context": f"\n\nConversation History:\n{conversation_context}" if conversation_context else ""
-                })
-                
-                # Ensure sources section is present with actual URLs
-                if "## Sources" not in final_answer and sources_list:
-                    final_answer += "\n\n## Sources\n\n"
-                    for i, source in enumerate(sources_list[:10], 1):
-                        # Use the actual URL from the source (should be /guidelines/...)
-                        source_url = source.url if source.url else "#"
-                        final_answer += f"{i}. [{source.title}]({source_url})\n"
-                
-                # Remove any inline citations from the body (they should only be numbered references)
-                # Replace inline link patterns with just the title, but preserve numbered references [1], [2], etc.
-                import re
-                # Pattern to match [Title](url) in the body (but keep Sources section and numbered references)
-                def replace_inline_citations(text):
-                    # Split by Sources section
-                    parts = text.split("## Sources")
-                    if len(parts) > 1:
-                        body = parts[0]
-                        sources_section = "## Sources" + parts[1]
-                        # Replace [Title](url) with just Title in the body
-                        # But preserve numbered references like [1](url), [2](url) - these should be kept
-                        # Pattern: [text](url) where text contains non-digit characters (i.e., is not just digits)
-                        # This will match [Title](url) but not [1](url) or [123](url)
-                        body = re.sub(r'\[([^\]]*[^\d][^\]]*)\]\([^\)]+\)', r'\1', body)
-                        return body + sources_section
-                    else:
-                        # Same pattern for text without Sources section
-                        return re.sub(r'\[([^\]]*[^\d][^\]]*)\]\([^\)]+\)', r'\1', text)
-                
-                final_answer = replace_inline_citations(final_answer)
-                
-                state["sources"] = sources_list
-            else:
-                final_answer = "I don't have sufficient information in my knowledge base to answer this question accurately. Please try rephrasing your question or asking about a different aspect of diabetes management."
+Provide your answer following all guardrails above.""")
+        ])
         
-        # Add answer to messages
-        state["messages"] = state.get("messages", []) + [AIMessage(content=final_answer)]
+        # Use direct LLM call (Claude works well with structured prompts)
+        # Determine has_sufficient_info programmatically based on chunks
+        has_sufficient_info = len(chunks) > 0 and any(chunk.get('relevance_score', 0) >= 0.4 for chunk in chunks)
+        
+        # Build chain for streaming
+        llm = get_llm()
+        chain = generator_prompt | llm | StrOutputParser()
+        
+        # Stream the response token by token
+        final_response = ""
+        if writer:
+            writer({"type": "generator_start", "message": "Generating answer..."})
+        
+        # Stream tokens as they're generated
+        for chunk in chain.stream({
+            "messages": state.get("messages", []),
+            "intent": intent,
+            "context": context
+        }):
+            # chunk is a string token
+            if chunk:
+                final_response += chunk
+                # Stream token to frontend via writer
+                if writer:
+                    writer({"type": "token", "content": chunk})
+        
+        # If no streaming happened (fallback), use invoke
+        if not final_response:
+            response = chain.invoke({
+                "messages": state.get("messages", []),
+                "intent": intent,
+                "context": context
+            })
+            final_response = response if isinstance(response, str) else response.content
+            # Stream the full response if we got it all at once
+            if writer and final_response:
+                writer({"type": "token", "content": final_response})
+        
+        # Remove any "## Sources" section that the LLM might have added
+        # Split by "## Sources" and take only the content before it
+        if "## Sources" in final_response:
+            final_response = final_response.split("## Sources")[0].strip()
+        
+        # Extract only sources that are actually referenced in the response
+        # Citations refer to chunk numbers (1, 2, 3...) from the context
+        import re
+        referenced_chunk_numbers = set()  # Chunk numbers cited (1-based)
+        
+        # Validate chunk numbers are within valid range
+        max_chunk_num = len(chunks) if chunks else 0
+        
+        # Pattern to match numbered citations like [1], [2], [10] but not [Title](url)
+        # Match [number] where number is digits, but not followed by (
+        citation_pattern = r'\[(\d+)\](?!\()'
+        matches = re.findall(citation_pattern, final_response)
+        for num_str in matches:
+            try:
+                chunk_num = int(num_str)  # This is 1-based chunk number from context
+                # Validate: chunk number must be within valid range (1 to max_chunk_num)
+                if 1 <= chunk_num <= max_chunk_num and chunk_num in chunk_to_source_map:
+                    referenced_chunk_numbers.add(chunk_num)
+                else:
+                    # Log invalid citation for debugging
+                    print(f"  ⚠ Invalid citation [{chunk_num}] - out of range (valid: 1-{max_chunk_num})")
+            except ValueError:
+                pass
+        
+        # Also check for [Title](url) format as fallback (in case LLM uses old format)
+        referenced_urls = set()
+        url_citation_pattern = r'\[([^\]]+)\]\(([^\)]+)\)'
+        url_matches = re.findall(url_citation_pattern, final_response)
+        for title, url in url_matches:
+            referenced_urls.add(url)
+        
+        # Extract sources ONLY from chunks that were actually cited
+        # This ensures we only return sources for chunks that were used
+        # NO FALLBACK - if no citations found, return empty list
+        cited_sources = []
+        cited_urls = set()  # Track URLs to avoid duplicates
+        
+        # First, get sources from cited chunk numbers (in order of citation)
+        for chunk_num in sorted(referenced_chunk_numbers):
+            if chunk_num in chunk_to_source_map:
+                source = chunk_to_source_map[chunk_num]
+                # Only add if we haven't seen this URL yet (preserve first occurrence order)
+                if source.url not in cited_urls:
+                    cited_sources.append(source)
+                    cited_urls.add(source.url)
+        
+        # Also include sources referenced by URL (fallback for markdown link format)
+        # But only if they were actually cited in the response
+        for url in referenced_urls:
+            if url not in cited_urls:
+                # Find source with this URL from seen_urls
+                if url in seen_urls:
+                    source = seen_urls[url]
+                    cited_sources.append(source)
+                    cited_urls.add(url)
+        
+        # CRITICAL: If no citations found at all, log warning but return empty sources
+        # We should NOT return all chunks if none were cited
+        if not referenced_chunk_numbers and not referenced_urls:
+            print(f"  ⚠ WARNING: No citations found in response!")
+            print(f"     Response length: {len(final_response)} chars")
+            print(f"     Chunks provided: {len(chunks)}")
+            print(f"     This means the LLM used information without citing it properly")
+            # Return empty sources - we can't cite what wasn't cited
+            cited_sources = []
+        
+        # Log for debugging
+        print(f"  Citations found: {sorted(referenced_chunk_numbers)}")
+        print(f"  URLs cited: {list(referenced_urls)}")
+        print(f"  Chunks provided: {len(chunks)}")
+        print(f"  Sources returned: {len(cited_sources)}")
+        if len(cited_sources) != len(referenced_chunk_numbers) + len(referenced_urls):
+            print(f"  ⚠ Note: Some citations may reference the same source (deduplicated)")
+        
+        # CRITICAL: Validate and filter cited_sources to ensure only actually cited sources are included
+        # Verify each source in cited_sources was actually cited
+        cited_chunk_nums = {chunk_num for chunk_num in referenced_chunk_numbers if chunk_num in chunk_to_source_map}
+        cited_source_urls = {chunk_to_source_map[cn].url for cn in cited_chunk_nums}
+        cited_source_urls.update(referenced_urls)
+        
+        # Remove any sources that weren't actually cited
+        final_cited_sources = [s for s in cited_sources if s.url in cited_source_urls]
+        
+        if len(final_cited_sources) != len(cited_sources):
+            print(f"  ⚠ WARNING: Removed {len(cited_sources) - len(final_cited_sources)} uncited sources!")
+            print(f"     Expected URLs: {cited_source_urls}")
+            print(f"     Found URLs: {[s.url for s in cited_sources]}")
+            cited_sources = final_cited_sources
+        
+        # Final validation: ensure all sources in cited_sources were actually cited
+        for source in cited_sources:
+            if source.url not in cited_source_urls:
+                print(f"  ⚠ ERROR: Source with URL {source.url} was not cited but included in results!")
+                cited_sources = [s for s in cited_sources if s.url in cited_source_urls]
+                break
+        
+        # Extract source URLs from validated cited sources
+        sources_used = [source.url for source in cited_sources]
+        
+        # Create GeneratorOutput object
+        result = GeneratorOutput(
+            response=final_response,
+            has_sufficient_info=has_sufficient_info,
+            sources_used=sources_used
+        )
+        
+        # If no chunks found, add insufficient info message
+        if not has_sufficient_info and not chunks:
+            if "don't have sufficient information" not in final_response.lower():
+                final_response = "I don't have sufficient information in my knowledge base to answer this question accurately. You may want to:\n- Rephrase your question with more specific terms\n- Ask about a different aspect of diabetes management\n- Consult the full clinical guidelines directly"
+        
+        # Update result with correct has_sufficient_info
+        result.has_sufficient_info = has_sufficient_info
+        result.response = final_response
+        
+        # Store citation mapping in a way frontend can use
+        state["generator_output"] = result
+        state["sources"] = cited_sources  # Only cited sources, not all retrieved
+        state["final_response"] = final_response
+        # Store citation mapping in a way frontend can use
+        # Frontend will receive sources array and can map [1] to sources[0] if citation_map[1] exists
+        # For now, we'll rely on the frontend to handle the mapping based on citation numbers in text
+        
+        # Add response to messages
+        state["messages"] = state.get("messages", []) + [AIMessage(content=final_response)]
         
         if writer:
-            writer({"type": "generator_complete", "message": f"Answer generated: {len(final_answer)} chars"})
+            writer({"type": "generator_complete", "message": f"Answer generated: {len(final_response)} chars"})
         
-        print(f"✓ Generator complete: Answer={len(final_answer) if final_answer else 0} chars, Chunks={len(state.get('retrieved_chunks', []))}")
+        print(f"✓ Generated response: {len(final_response)} chars")
+        print(f"  Sufficient info: {result.has_sufficient_info}")
+        print(f"  Retrieved chunks: {len(chunks)}")
+        print(f"  Cited sources: {len(cited_sources)}")
+        
+        return state
         
     except Exception as e:
-        error_msg = f"Error during generation: {str(e)[:200]}"
-        print(f"⚠ Generator error: {e}")
-        state["messages"] = state.get("messages", []) + [AIMessage(content=error_msg)]
+        error_msg = f"Error in generator node: {str(e)[:200]}"
+        print(f"❌ {error_msg}")
+        import traceback
+        traceback.print_exc()
+        final_response = f"I encountered an error while generating the response: {str(e)[:200]}. Please try rephrasing your question."
+        state["final_response"] = final_response
+        state["messages"] = state.get("messages", []) + [AIMessage(content=final_response)]
         if writer:
             writer({"type": "generator_error", "message": error_msg})
-    
     return state
 

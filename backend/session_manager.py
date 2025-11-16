@@ -33,10 +33,11 @@ class SessionManager:
             # Create new session with empty state
             self.sessions[session_id] = ChatState(
                 messages=[],
-                classification=None,
+                classifier_output=None,
                 retrieved_chunks=[],
+                generator_output=None,
                 sources=[],
-                is_followup=False
+                final_response=None
             )
         
         return session_id, self.sessions[session_id]
@@ -65,10 +66,11 @@ class SessionManager:
             # Reset to empty state but keep session
             self.sessions[session_id] = ChatState(
                 messages=[],
-                classification=None,
+                classifier_output=None,
                 retrieved_chunks=[],
+                generator_output=None,
                 sources=[],
-                is_followup=False
+                final_response=None
             )
             return True
         return False

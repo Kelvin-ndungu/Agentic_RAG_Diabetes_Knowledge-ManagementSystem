@@ -4,28 +4,50 @@ import { Link } from 'react-router-dom'
 
 /**
  * Process numbered references [1], [2], etc. and convert them to clickable links
- * that point to the corresponding source URL (same as in sources section).
+ * that point to the corresponding source URL.
+ * 
+ * Note: The citation numbers [1], [2] refer to the original source order.
+ * The sources array contains only cited sources, so we need to find the source
+ * that matches the citation number. We extract all citation numbers from the
+ * content and map them to sources in the order they appear.
  */
 function processNumberedReferences(content, sources) {
   if (!sources || sources.length === 0) {
     return content
   }
   
-  // Pattern to match numbered references like [1], [2], [10], etc.
-  // But avoid matching markdown links [text](url) or images ![alt](url)
-  // We want to match standalone [number] patterns (not followed by parentheses)
-  // Using a simpler pattern that checks the character after ]
+  // Extract all unique citation numbers from content
+  const citationNumbers = new Set()
   const referencePattern = /\[(\d+)\](?!\()/g
+  let match
+  // Reset regex lastIndex to ensure we scan from the beginning
+  referencePattern.lastIndex = 0
+  while ((match = referencePattern.exec(content)) !== null) {
+    citationNumbers.add(parseInt(match[1], 10))
+  }
   
+  // Sort citation numbers to create ordered mapping
+  // Map citation numbers to sources in the order they appear in sources array
+  const sortedCitations = Array.from(citationNumbers).sort((a, b) => a - b)
+  const citationMap = new Map()
+  sortedCitations.forEach((citationNum, arrayIndex) => {
+    if (arrayIndex < sources.length) {
+      citationMap.set(citationNum, sources[arrayIndex])
+    }
+  })
+  
+  // Replace numbered references with markdown links
+  // Reset regex for replacement
+  referencePattern.lastIndex = 0
   return content.replace(referencePattern, (match, num) => {
-    const index = parseInt(num, 10) - 1 // Convert to 0-based index
-    if (index >= 0 && index < sources.length) {
-      const source = sources[index]
+    const citationNum = parseInt(num, 10)
+    const source = citationMap.get(citationNum)
+    if (source) {
       const sourceUrl = source.url || '#'
       // Create a markdown link that will be rendered by ReactMarkdown
       return `[${num}](${sourceUrl})`
     }
-    return match // Return original if index is invalid
+    return match // Return original if source not found
   })
 }
 
@@ -37,14 +59,26 @@ export default function Message({ message }) {
   // Custom components for markdown rendering
   const markdownComponents = {
     // Use React Router Link for internal routes, regular links for external
-    a: ({ node, href, ...props }) => {
+    a: ({ node, href, children, ...props }) => {
       // Check if it's an internal route (starts with /guidelines)
       if (href && href.startsWith('/guidelines')) {
         // Use React Router Link for internal navigation (keeps chat open)
-        return <Link to={href} {...props} />
+        // Prevent default navigation behavior to keep chat visible
+        return (
+          <Link 
+            to={href} 
+            {...props}
+            onClick={(e) => {
+              // Keep chat open - don't prevent default, but ensure smooth navigation
+              // The Link component will handle navigation while keeping the app state
+            }}
+          >
+            {children}
+          </Link>
+        )
       }
       // External links open in new tab
-      return <a href={href} target="_blank" rel="noopener noreferrer" {...props} />
+      return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>
     },
     h1: ({ node, ...props }) => <h1 className="markdown-h1" {...props} />,
     h2: ({ node, ...props }) => <h2 className="markdown-h2" {...props} />,
@@ -101,6 +135,10 @@ export default function Message({ message }) {
                     <Link 
                       to={sourceUrl}
                       className="source-link"
+                      onClick={(e) => {
+                        // Keep chat open - Link will handle navigation smoothly
+                        // The router will update the URL but the chat interface should remain visible
+                      }}
                     >
                       {index + 1}. {source.title || `Source ${index + 1}`}
                     </Link>
