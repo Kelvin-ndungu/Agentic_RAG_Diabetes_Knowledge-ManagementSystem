@@ -3,6 +3,8 @@
 <<<<<<< HEAD
 An **agentic RAG system** built with **LangChain**, **LangGraph**, and **Pydantic-enforced structured outputs** that transforms clinical guidelines into a verifiable knowledge base. This project demonstrates production-grade LLM engineering: optimized multi-agent orchestration, type-safe state machines, vector retrieval with HNSW indexing, and structured generation.
 
+
+
 ## Core Architecture: Optimized RAG Pipeline
 
 This system implements an **optimized RAG pipeline** using **LangChain** and **LangGraph** with a streamlined 2-LLM-call architecture:
