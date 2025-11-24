@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect, useRef } from 'react'
 import { sendMessage as sendChatMessage, clearChat } from '../services/chatService'
 
@@ -6,6 +8,12 @@ export function useChat(initialQuery = '') {
   const [loading, setLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
   const [sessionId, setSessionId] = useState(null)
+  
+  // NEW: State to control auto-scrolling behavior
+  // This will be set to true when sending a new message
+  // Will be set to false when user manually scrolls OR when streaming completes
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true)
+  
   const statusMessageIdRef = useRef(null)
 
   useEffect(() => {
@@ -43,6 +51,11 @@ export function useChat(initialQuery = '') {
   }, [initialQuery])
 
   const sendMessage = async (content) => {
+    // CRITICAL CHANGE: Always enable auto-scroll when sending a NEW message
+    // This resets auto-scroll state for the new message, regardless of previous scroll behavior
+    setShouldAutoScroll(true)
+    console.log('New message sent - auto-scroll ENABLED') // Debug log
+
     // Add user message
     const userMessage = {
       role: 'user',
@@ -93,6 +106,7 @@ export function useChat(initialQuery = '') {
         } else if (chunk.type === 'stream_start') {
           // Start of streaming - replace status with empty answer message
           setIsStreaming(true)
+          console.log('Streaming started') // Debug log
           setMessages(prev => {
             const updated = [...prev]
             const statusIndex = updated.findIndex(msg => msg.id === statusId)
@@ -128,6 +142,7 @@ export function useChat(initialQuery = '') {
         } else if (chunk.type === 'stream_end') {
           // End of streaming - finalize answer with sources
           setIsStreaming(false)
+          console.log('Streaming ended - auto-scroll will be DISABLED') // Debug log
           finalAnswer = chunk.content || streamingContent
           finalSources = chunk.sources || []
           if (chunk.session_id) {
@@ -148,6 +163,15 @@ export function useChat(initialQuery = '') {
             }
             return updated
           })
+          
+          // CRITICAL CHANGE: Disable auto-scroll after streaming completes
+          // This allows user to scroll freely after the answer is done
+          // Next message will re-enable it
+          setTimeout(() => {
+            setShouldAutoScroll(false)
+            console.log('Auto-scroll DISABLED after streaming completion') // Debug log
+          }, 100)
+          
         } else if (chunk.type === 'answer') {
           // Final answer received (non-streaming)
           finalAnswer = chunk.content
@@ -188,6 +212,12 @@ export function useChat(initialQuery = '') {
           
           return updated
         })
+        
+        // CHANGE: Disable auto-scroll after non-streaming response too
+        setTimeout(() => {
+          setShouldAutoScroll(false)
+          console.log('Auto-scroll DISABLED after non-streaming response') // Debug log
+        }, 100)
       }
 
       statusMessageIdRef.current = null
@@ -221,6 +251,12 @@ export function useChat(initialQuery = '') {
       
       statusMessageIdRef.current = null
       setLoading(false)
+      
+      // CHANGE: Disable auto-scroll after error too
+      setTimeout(() => {
+        setShouldAutoScroll(false)
+        console.log('Auto-scroll DISABLED after error') // Debug log
+      }, 100)
     }
   }
 
@@ -242,8 +278,29 @@ export function useChat(initialQuery = '') {
     
     setMessages([welcomeMessage])
     setSessionId(null)
+    
+    // CHANGE: Reset auto-scroll when clearing messages
+    setShouldAutoScroll(true)
   }
 
-  return { messages, sendMessage, loading, isStreaming, clearMessages, sessionId }
+  // NEW: Function to disable auto-scroll when user manually scrolls
+  // This will be called from MessageList when user scrolls during active streaming
+  const disableAutoScroll = () => {
+    setShouldAutoScroll(false)
+    console.log('Auto-scroll DISABLED by user scroll') // Debug log
+  }
+
+  // CHANGE: Return additional values for scroll control
+  return { 
+    messages, 
+    sendMessage, 
+    loading, 
+    isStreaming, 
+    clearMessages, 
+    sessionId,
+    shouldAutoScroll,  // NEW: Export this so component knows when to auto-scroll
+    disableAutoScroll  // NEW: Export this so component can disable auto-scroll
+  }
 }
+
 

@@ -1,10 +1,21 @@
+
 import { useState, useEffect, useRef } from 'react'
 import MessageList from './MessageList'
 import ChatInput from './ChatInput'
 import { useChat } from '../../hooks/useChat'
 
 export default function ChatInterface({ isOpen, onClose, initialQuery = '', isMobile = false, onWidthChange }) {
-  const { messages, sendMessage, loading, isStreaming, clearMessages } = useChat(initialQuery)
+  // CHANGED: Destructure new scroll control values from useChat
+  const { 
+    messages, 
+    sendMessage, 
+    loading, 
+    isStreaming, 
+    clearMessages,
+    shouldAutoScroll,    // NEW: Get auto-scroll state
+    disableAutoScroll    // NEW: Get function to disable auto-scroll
+  } = useChat(initialQuery)
+  
   const [width, setWidth] = useState(33.33) // Default to 1/3 (33.33%)
   const [isDragging, setIsDragging] = useState(false)
   const chatRef = useRef(null)
@@ -105,7 +116,14 @@ export default function ChatInterface({ isOpen, onClose, initialQuery = '', isMo
           </div>
         </div>
         
-        <MessageList messages={messages} loading={loading} isStreaming={isStreaming} />
+        {/* CHANGED: Pass scroll control props to MessageList */}
+        <MessageList 
+          messages={messages} 
+          loading={loading} 
+          isStreaming={isStreaming}
+          shouldAutoScroll={shouldAutoScroll}      // NEW: Pass auto-scroll state
+          disableAutoScroll={disableAutoScroll}    // NEW: Pass disable function
+        />
         
         <ChatInput 
           onSend={handleSend}
@@ -115,4 +133,3 @@ export default function ChatInterface({ isOpen, onClose, initialQuery = '', isMo
     </>
   )
 }
-
