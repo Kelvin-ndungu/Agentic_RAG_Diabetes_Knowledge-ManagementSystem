@@ -329,8 +329,12 @@ The `backend/` directory contains the production-ready refactor of notebook code
 ### Installation
 
 ```bash
-# 1. Install dependencies
+# 1. Install runtime dependencies
 pip install -r backend/requirements.txt
+
+# (Optional) Install dev/notebook dependencies
+# Justification: keep runtime installs lean while enabling notebooks when needed.
+pip install -r backend/requirements-dev.txt
 
 # 2. Configure environment
 cat > .env << EOF
@@ -338,6 +342,8 @@ CLAUDE_API_KEY=sk-ant-xxx
 JINA_API_KEY=jina_xxx
 CHROMA_DB_PATH=./chroma_db
 COLLECTION_NAME=diabetes_guidelines_v1
+LANGSMITH_TRACING=false
+LANGSMITH_PROJECT=diabetes-knowledge-hub
 EOF
 
 # 3. Run backend (FastAPI on port 8000)

@@ -1,12 +1,16 @@
-# Backend - Diabetes Knowledge Management API
+﻿# Backend - Diabetes Knowledge Management API
 
-FastAPI backend with RAG pipeline for querying diabetes clinical guidelines using LangGraph, ChromaDB, and Claude Haiku.
+FastAPI backend with a RAG pipeline for querying diabetes clinical guidelines using LangGraph, ChromaDB, and Claude Haiku.
 
 ## Quick Start
 
 ```bash
 # Install dependencies
 pip install -r requirements.txt
+
+# (Optional) Install dev/notebook dependencies
+# Justification: keep runtime installs lean while enabling notebook workflows when needed.
+pip install -r requirements-dev.txt
 
 # Create .env file with required variables
 # See Environment Variables section below
@@ -30,37 +34,20 @@ The API will be available at `http://localhost:8000`
 
 The workflow follows this pattern:
 
-1. **Classification** (`classify_query`) - Verifies query relevance and safety
-2. **Routing** (`route_classifier`) - Routes to appropriate handler
-3. **Retrieval** - Semantic search in ChromaDB using Jina embeddings
-4. **Generation** (`generator_node`) - Claude generates answer with citations
-5. **Streaming** - Status updates and final answer streamed to client
+1. **Classification** - Verifies query intent/safety and routes the request
+2. **Retrieval** - Semantic search in ChromaDB using Jina embeddings
+3. **Generation** - Claude generates an answer with citations
+4. **Streaming** - Status updates and final answer streamed to client
 
-### Key Modules
+### Key Modules (Consolidated)
 
-- **`main.py`** - FastAPI app initialization
-  - Validates configuration
-  - Initializes ChromaDB reader and Jina embeddings
-  - Builds and compiles LangGraph workflow
-  - Sets up CORS for frontend
-
-- **`routes.py`** - API endpoints
-  - `POST /api/chat` - Streaming chat endpoint
-  - `POST /api/chat/clear` - Clear session history
-  - `GET /api/health` - Health check
-
-- **`graph_builder.py`** - LangGraph workflow construction
-  - Defines node connections and routing logic
-  - Compiles graph for execution
-
-- **`graph_nodes.py`** - Workflow node implementations
-  - Query classification
-  - Semantic retrieval from ChromaDB
-  - LLM generation with context
-
-- **`session_manager.py`** - Conversation state management
-  - Maintains chat history per session
-  - Thread-based state persistence
+- **`backend/main.py`** - FastAPI app + routes + session handling
+- **`backend/rag.py`** - LangGraph workflow and node logic (classify, retrieve, generate)
+- **`backend/llm.py`** - LLM + embeddings + retry/timing helpers
+- **`backend/store.py`** - ChromaDB reader
+- **`backend/schema.py`** - Pydantic models for API/state
+- **`backend/config.py`** - Environment configuration
+- **`backend/prompts.py`** - Prompt text for classifier/generator
 
 ## API Endpoints
 
@@ -104,31 +91,26 @@ COLLECTION_NAME=diabetes_guidelines_v1
 - `JINA_API_KEY` - Jina AI API key for embeddings
 
 **Optional (with defaults):**
-- `CHROMA_DB_PATH` - Path to ChromaDB directory (default: `./chroma_db`)
-- `COLLECTION_NAME` - ChromaDB collection name (default: `diabetes_guidelines_v1`)
+- `CHROMA_DB_PATH` - Path to ChromaDB directory (default: ./chroma_db)
+- `COLLECTION_NAME` - ChromaDB collection name (default: diabetes_guidelines_v1)
+- `RETRIEVAL_TOP_K` - Number of chunks to retrieve (default: 5)
+- `RETRIEVAL_MIN_SIMILARITY` - Similarity cutoff (default: 0.4)
+- `LLM_MAX_RETRIES` - Retry count for LLM calls (default: 2)
+- `MAX_REQUEST_SIZE_KB` - Request size limit (default: 10)
+- `LOG_TIMINGS` - Print stage timings (default: true)
+- `LANGSMITH_TRACING` - Enable LangSmith tracing (default: false)
+- `LANGSMITH_API_KEY` - LangSmith API key (required if tracing enabled)
+- `LANGSMITH_PROJECT` - LangSmith project name (default: diabetes-knowledge-hub)
+- `LANGSMITH_ENDPOINT` - Optional custom LangSmith endpoint
 
-## Project Structure
-
-```
-backend/
-├── main.py              # FastAPI app entry point
-├── routes.py            # API endpoints
-├── graph_builder.py     # LangGraph workflow
-├── graph_nodes.py       # Workflow node logic
-├── config.py            # Configuration and validation
-├── chromadb_reader.py   # ChromaDB integration
-├── jina_embedding.py    # Jina embedding function
-├── session_manager.py   # Session state management
-├── models.py            # Pydantic models
-└── requirements.txt     # Python dependencies
-```
+Notes:
+- `requirements.txt` is runtime-only
+- `requirements-dev.txt` is for notebooks/experiments
 
 ## How It Works
 
 1. **Startup**: Server initializes ChromaDB connection and compiles LangGraph workflow
-2. **Query Processing**: User message → classification → retrieval → generation
+2. **Query Processing**: User message -> classification -> retrieval -> generation
 3. **Streaming**: Status updates and final answer streamed as newline-delimited JSON
 4. **Session Management**: Conversation history maintained per session ID
 5. **Citations**: Retrieved chunks included as sources in response
-
-The backend provides a RAG-powered API that enables semantic search over diabetes guidelines and generates contextual answers with source citations.

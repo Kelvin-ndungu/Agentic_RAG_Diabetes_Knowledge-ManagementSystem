@@ -1,42 +1,34 @@
-
-
+﻿// Justification: centralize state hooks to reduce file count.
 import { useState, useEffect, useRef } from 'react'
-import { sendMessage as sendChatMessage, clearChat } from '../services/chatService'
+import documentData from './data/document_structure.json'
+import { sendMessage as sendChatMessage, clearChat } from './api'
 
 export function useChat(initialQuery = '') {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const [isStreaming, setIsStreaming] = useState(false)
   const [sessionId, setSessionId] = useState(null)
-  
-  // NEW: State to control auto-scrolling behavior
-  // This will be set to true when sending a new message
-  // Will be set to false when user manually scrolls OR when streaming completes
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true)
-  
+
   const statusMessageIdRef = useRef(null)
 
   useEffect(() => {
-    // Initialize with welcome message
     const welcomeMessage = {
       role: 'assistant',
       content: 'Welcome! I can help you find information about diabetes management guidelines. Ask me anything!',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     }
 
     setMessages([welcomeMessage])
   }, [])
 
-  // Handle initial query separately
   const initialQuerySentRef = useRef(false)
-  
+
   useEffect(() => {
     if (initialQuery && !initialQuerySentRef.current && messages.length === 1) {
-      // Only send if we just have the welcome message and haven't sent yet
       const welcomeMsg = messages[0]
       if (welcomeMsg && welcomeMsg.content.includes('Welcome')) {
         initialQuerySentRef.current = true
-        // Use setTimeout to avoid calling sendMessage during render
         setTimeout(() => {
           sendMessage(initialQuery)
         }, 100)
@@ -44,72 +36,62 @@ export function useChat(initialQuery = '') {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuery, messages.length])
-  
-  // Reset initial query sent flag when initialQuery changes
+
   useEffect(() => {
     initialQuerySentRef.current = false
   }, [initialQuery])
 
   const sendMessage = async (content) => {
-    // CRITICAL CHANGE: Always enable auto-scroll when sending a NEW message
-    // This resets auto-scroll state for the new message, regardless of previous scroll behavior
     setShouldAutoScroll(true)
-    console.log('New message sent - auto-scroll ENABLED') // Debug log
 
-    // Add user message
     const userMessage = {
       role: 'user',
       content,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     }
 
-    setMessages(prev => [...prev, userMessage])
+    setMessages((prev) => [...prev, userMessage])
     setLoading(true)
     statusMessageIdRef.current = null
 
     try {
-      // Create temporary status message
       const statusId = `status-${Date.now()}`
       statusMessageIdRef.current = statusId
-      
+
       const statusMessage = {
         id: statusId,
         role: 'assistant',
         content: 'Processing...',
         timestamp: new Date().toISOString(),
-        isStatus: true
+        isStatus: true,
       }
 
-      setMessages(prev => [...prev, statusMessage])
+      setMessages((prev) => [...prev, statusMessage])
 
-      // Stream response from API
       let finalAnswer = null
       let finalSources = []
       let finalSessionId = sessionId
-      let streamingContent = ""  // Accumulate streaming content
-      let answerMessageId = null  // Track the streaming answer message
+      let streamingContent = ''
+      let answerMessageId = null
 
       for await (const chunk of sendChatMessage(content, sessionId)) {
         if (chunk.type === 'status') {
-          // Update status message
-          setMessages(prev => {
+          setMessages((prev) => {
             const updated = [...prev]
-            const statusIndex = updated.findIndex(msg => msg.id === statusId)
+            const statusIndex = updated.findIndex((msg) => msg.id === statusId)
             if (statusIndex !== -1) {
               updated[statusIndex] = {
                 ...updated[statusIndex],
-                content: chunk.message
+                content: chunk.message,
               }
             }
             return updated
           })
         } else if (chunk.type === 'stream_start') {
-          // Start of streaming - replace status with empty answer message
           setIsStreaming(true)
-          console.log('Streaming started') // Debug log
-          setMessages(prev => {
+          setMessages((prev) => {
             const updated = [...prev]
-            const statusIndex = updated.findIndex(msg => msg.id === statusId)
+            const statusIndex = updated.findIndex((msg) => msg.id === statusId)
             if (statusIndex !== -1) {
               answerMessageId = statusId
               updated[statusIndex] = {
@@ -117,63 +99,52 @@ export function useChat(initialQuery = '') {
                 role: 'assistant',
                 content: '',
                 sources: [],
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
               }
             }
             return updated
           })
         } else if (chunk.type === 'token') {
-          // Token received - append to streaming content
           streamingContent += chunk.content
-          // Update the answer message in real-time
           if (answerMessageId) {
-            setMessages(prev => {
+            setMessages((prev) => {
               const updated = [...prev]
-              const answerIndex = updated.findIndex(msg => msg.id === answerMessageId)
+              const answerIndex = updated.findIndex((msg) => msg.id === answerMessageId)
               if (answerIndex !== -1) {
                 updated[answerIndex] = {
                   ...updated[answerIndex],
-                  content: streamingContent
+                  content: streamingContent,
                 }
               }
               return updated
             })
           }
         } else if (chunk.type === 'stream_end') {
-          // End of streaming - finalize answer with sources
           setIsStreaming(false)
-          console.log('Streaming ended - auto-scroll will be DISABLED') // Debug log
           finalAnswer = chunk.content || streamingContent
           finalSources = chunk.sources || []
           if (chunk.session_id) {
             finalSessionId = chunk.session_id
             setSessionId(chunk.session_id)
           }
-          
-          // Update final message with sources
-          setMessages(prev => {
+
+          setMessages((prev) => {
             const updated = [...prev]
-            const answerIndex = updated.findIndex(msg => msg.id === (answerMessageId || statusId))
+            const answerIndex = updated.findIndex((msg) => msg.id === (answerMessageId || statusId))
             if (answerIndex !== -1) {
               updated[answerIndex] = {
                 ...updated[answerIndex],
                 content: finalAnswer,
-                sources: finalSources
+                sources: finalSources,
               }
             }
             return updated
           })
-          
-          // CRITICAL CHANGE: Disable auto-scroll after streaming completes
-          // This allows user to scroll freely after the answer is done
-          // Next message will re-enable it
+
           setTimeout(() => {
             setShouldAutoScroll(false)
-            console.log('Auto-scroll DISABLED after streaming completion') // Debug log
           }, 100)
-          
         } else if (chunk.type === 'answer') {
-          // Final answer received (non-streaming)
           finalAnswer = chunk.content
           finalSources = chunk.sources || []
           if (chunk.session_id) {
@@ -181,42 +152,36 @@ export function useChat(initialQuery = '') {
             setSessionId(chunk.session_id)
           }
         } else if (chunk.type === 'error') {
-          // Error occurred
           throw new Error(chunk.message || 'An error occurred')
         }
       }
 
-      // Replace status message with final answer (fallback for non-streaming)
       if (finalAnswer !== null && !answerMessageId) {
-        setMessages(prev => {
+        setMessages((prev) => {
           const updated = [...prev]
-          const statusIndex = updated.findIndex(msg => msg.id === statusId)
-          
+          const statusIndex = updated.findIndex((msg) => msg.id === statusId)
+
           if (statusIndex !== -1) {
-            // Replace status message with final answer
             updated[statusIndex] = {
               role: 'assistant',
               content: finalAnswer,
               sources: finalSources,
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             }
           } else {
-            // Status message not found, add new message
             updated.push({
               role: 'assistant',
               content: finalAnswer,
               sources: finalSources,
-              timestamp: new Date().toISOString()
+              timestamp: new Date().toISOString(),
             })
           }
-          
+
           return updated
         })
-        
-        // CHANGE: Disable auto-scroll after non-streaming response too
+
         setTimeout(() => {
           setShouldAutoScroll(false)
-          console.log('Auto-scroll DISABLED after non-streaming response') // Debug log
         }, 100)
       }
 
@@ -226,36 +191,33 @@ export function useChat(initialQuery = '') {
     } catch (error) {
       console.error('Chat error:', error)
       setIsStreaming(false)
-      
-      // Replace status message with error message
-      setMessages(prev => {
+
+      setMessages((prev) => {
         const updated = [...prev]
-        const statusIndex = updated.findIndex(msg => msg.id === statusMessageIdRef.current)
-        
+        const statusIndex = updated.findIndex((msg) => msg.id === statusMessageIdRef.current)
+
         if (statusIndex !== -1) {
           updated[statusIndex] = {
             role: 'assistant',
             content: `I'm sorry, I encountered an error: ${error.message}. Please try again.`,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
           }
         } else {
           updated.push({
             role: 'assistant',
             content: `I'm sorry, I encountered an error: ${error.message}. Please try again.`,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
           })
         }
-        
+
         return updated
       })
-      
+
       statusMessageIdRef.current = null
       setLoading(false)
-      
-      // CHANGE: Disable auto-scroll after error too
+
       setTimeout(() => {
         setShouldAutoScroll(false)
-        console.log('Auto-scroll DISABLED after error') // Debug log
       }, 100)
     }
   }
@@ -268,39 +230,122 @@ export function useChat(initialQuery = '') {
         console.error('Error clearing chat:', error)
       }
     }
-    
-    // Reset to welcome message
+
     const welcomeMessage = {
       role: 'assistant',
       content: 'Welcome! I can help you find information about diabetes management guidelines. Ask me anything!',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     }
-    
+
     setMessages([welcomeMessage])
     setSessionId(null)
-    
-    // CHANGE: Reset auto-scroll when clearing messages
     setShouldAutoScroll(true)
   }
 
-  // NEW: Function to disable auto-scroll when user manually scrolls
-  // This will be called from MessageList when user scrolls during active streaming
   const disableAutoScroll = () => {
     setShouldAutoScroll(false)
-    console.log('Auto-scroll DISABLED by user scroll') // Debug log
   }
 
-  // CHANGE: Return additional values for scroll control
-  return { 
-    messages, 
-    sendMessage, 
-    loading, 
-    isStreaming, 
-    clearMessages, 
+  return {
+    messages,
+    sendMessage,
+    loading,
+    isStreaming,
+    clearMessages,
     sessionId,
-    shouldAutoScroll,  // NEW: Export this so component knows when to auto-scroll
-    disableAutoScroll  // NEW: Export this so component can disable auto-scroll
+    shouldAutoScroll,
+    disableAutoScroll,
   }
 }
 
+export function useDocument() {
+  const [document, setDocument] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
+  useEffect(() => {
+    try {
+      setTimeout(() => {
+        setDocument(documentData)
+        setLoading(false)
+      }, 100)
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
+    }
+  }, [])
+
+  const findSectionById = (id) => {
+    if (!document) return null
+
+    for (const item of document.document.frontMatter) {
+      if (item.id === id) return item
+      if (item.sections) {
+        const found = findInSections(item.sections, id)
+        if (found) return found
+      }
+    }
+
+    for (const chapter of document.document.chapters) {
+      if (chapter.id === id) return chapter
+      if (chapter.sections) {
+        const found = findInSections(chapter.sections, id)
+        if (found) return found
+      }
+    }
+
+    return null
+  }
+
+  const findInSections = (sections, id) => {
+    for (const section of sections) {
+      if (section.id === id) return section
+      if (section.subsections) {
+        const found = findInSections(section.subsections, id)
+        if (found) return found
+      }
+    }
+    return null
+  }
+
+  const findSectionBySlug = (slug) => {
+    if (!document) return null
+
+    for (const item of document.document.frontMatter) {
+      if (item.slug === slug) return item
+      if (item.sections) {
+        const found = findInSectionsBySlug(item.sections, slug)
+        if (found) return found
+      }
+    }
+
+    for (const chapter of document.document.chapters) {
+      if (chapter.slug === slug) return chapter
+      if (chapter.sections) {
+        const found = findInSectionsBySlug(chapter.sections, slug)
+        if (found) return found
+      }
+    }
+
+    return null
+  }
+
+  const findInSectionsBySlug = (sections, slug) => {
+    for (const section of sections) {
+      if (section.slug === slug) return section
+      if (section.subsections) {
+        const found = findInSectionsBySlug(section.subsections, slug)
+        if (found) return found
+      }
+    }
+    return null
+  }
+
+  return {
+    document,
+    loading,
+    error,
+    findSectionById,
+    findSectionBySlug,
+  }
+}

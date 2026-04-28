@@ -1,23 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+﻿import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState, useEffect, useCallback } from 'react'
-import { useDocument } from './hooks/useDocument'
-import Header from './components/layout/Header'
-import Sidebar from './components/layout/Sidebar'
-import HomePage from './components/HomePage'
-import DocumentViewer from './components/content/DocumentViewer'
-import ChatInterface from './components/chat/ChatInterface'
+import { useDocument } from './state'
+import { Header, Sidebar, HomePage, DocumentViewer, ChatInterface } from './ui'
 import './App.css'
 
 function App() {
   const { document, loading, error } = useDocument()
-  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768) // Open by default on desktop
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768)
   const [chatOpen, setChatOpen] = useState(false)
   const [chatInitialQuery, setChatInitialQuery] = useState('')
   const [chatWidth, setChatWidth] = useState(33.33)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  const [viewMode, setViewMode] = useState('normal')
 
   const toggleSidebar = useCallback(() => {
-    setSidebarOpen(prev => !prev)
+    setSidebarOpen((prev) => !prev)
   }, [])
 
   useEffect(() => {
@@ -25,7 +22,6 @@ function App() {
       const mobile = window.innerWidth < 768
       const wasMobile = isMobile
       setIsMobile(mobile)
-      // Auto-open sidebar when switching to desktop, close when switching to mobile
       if (!mobile && wasMobile) {
         setSidebarOpen(true)
       } else if (mobile && !wasMobile) {
@@ -40,9 +36,21 @@ function App() {
   const handleSearchClick = (query = '') => {
     setChatInitialQuery(query)
     setChatOpen(true)
-    // Close sidebar on mobile when opening chat
     if (isMobile) {
       setSidebarOpen(false)
+    }
+  }
+
+  const handleViewModeChange = (mode) => {
+    setViewMode(mode)
+    if (mode === 'chat-only' || mode === 'chat-alone') {
+      setChatOpen(true)
+      setSidebarOpen(false)
+    } else if (mode === 'document-only') {
+      setChatOpen(false)
+      setSidebarOpen(true)
+    } else if (mode === 'normal') {
+      setSidebarOpen(window.innerWidth >= 768)
     }
   }
 
@@ -77,46 +85,60 @@ function App() {
     )
   }
 
+  const showSidebar = (viewMode === 'normal' || viewMode === 'document-only') && sidebarOpen
+  const showContent = viewMode === 'normal' || viewMode === 'document-only'
+  const showChat = chatOpen && (viewMode === 'normal' || viewMode === 'chat-only' || viewMode === 'chat-alone')
+  const isChatCentered = viewMode === 'chat-only' || viewMode === 'chat-alone'
+
   return (
     <BrowserRouter>
-      <div className="app">
-        <Header 
+      <div className={`app view-mode-${viewMode}`}>
+        <Header
           onMenuClick={toggleSidebar}
           onSearchClick={handleSearchClick}
           isMobile={isMobile}
           chatOpen={chatOpen}
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
         />
-        
-        <div className="main-container">
-          <Sidebar 
-            document={document.document}
-            isOpen={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-            isMobile={isMobile}
-          />
-          
-          <div className={`content-wrapper ${!sidebarOpen && !isMobile ? 'sidebar-closed' : ''}`} style={chatOpen && !isMobile ? { 
-            width: `calc(${100 - chatWidth}vw - 240px)`
-          } : {}}>
-            <main 
-              className={`content-area ${sidebarOpen && isMobile ? 'sidebar-open' : ''}`}
-            >
-              <Routes>
-                <Route path="/" element={<HomePage document={document.document} />} />
-                <Route path="/guidelines/*" element={
-                  <DocumentViewer document={document.document} />
-                } />
-              </Routes>
-            </main>
-          </div>
 
-          {chatOpen && (
-            <ChatInterface 
+        <div className="main-container">
+          {showSidebar && (
+            <Sidebar document={document.document} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} isMobile={isMobile} />
+          )}
+
+          {showContent && (
+            <div
+              className={`content-wrapper ${!sidebarOpen && !isMobile ? 'sidebar-closed' : ''}`}
+              style={
+                chatOpen && !isMobile && viewMode === 'normal'
+                  ? {
+                      width: `calc(${100 - chatWidth}vw - 240px)`,
+                    }
+                  : {}
+              }
+            >
+              <div className="content-panel-header">
+                <div className="panel-title">Original Guidelines</div>
+                <div className="panel-subtitle">Browse the source document</div>
+              </div>
+              <main className={`content-area ${sidebarOpen && isMobile ? 'sidebar-open' : ''}`}>
+                <Routes>
+                  <Route path="/" element={<HomePage document={document.document} />} />
+                  <Route path="/guidelines/*" element={<DocumentViewer document={document.document} />} />
+                </Routes>
+              </main>
+            </div>
+          )}
+
+          {showChat && (
+            <ChatInterface
               isOpen={chatOpen}
               onClose={() => setChatOpen(false)}
               initialQuery={chatInitialQuery}
               isMobile={isMobile}
               onWidthChange={setChatWidth}
+              isCentered={isChatCentered}
             />
           )}
         </div>
